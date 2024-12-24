@@ -975,7 +975,9 @@ background-color:#f3f3f3;
   height: 100%; /* 导航栏高度，占满整个视口高度 */
   overflow-y: auto; /* 当内容超出高度时，显示垂直滚动条 */
   background-color: #ffffff; /* 导航栏背景颜色，根据需要调整 */
-  
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.04),
+        0 2px 4px rgba(0, 0, 0, 0.08);
   /* 其他样式根据需要添加 */
 }
 .menu-content1::-webkit-scrollbar {
