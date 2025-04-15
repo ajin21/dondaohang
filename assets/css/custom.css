@@ -1,0 +1,121 @@
+/* 导航菜单现代化 */
+.sidebar-menu {
+    background: linear-gradient(180deg, #2c2e2f 0%, #1a1b1c 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu .main-menu a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu .main-menu a:hover {
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    border-left: 3px solid #3498db;
+}
+
+.sidebar-menu .main-menu li.active > a {
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(52, 152, 219, 0.2) 0%, transparent 100%);
+    border-left: 3px solid #3498db;
+}
+
+/* 卡片样式现代化 */
+.xe-widget {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.xe-widget:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* 卡片内文字样式优化 */
+.xe-widget .xe-title {
+    color: #2c3e50;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.xe-widget .xe-details {
+    color: #34495e;
+    font-weight: 500;
+}
+
+.xe-widget .xe-label {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.xe-widget p {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.xe-widget small {
+    color: #576574;
+}
+
+/* 功能按钮美化 */
+.function-button1,
+.function-button2 {
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.function-button1:hover,
+.function-button2:hover {
+    transform: translateY(-2px);
+    color: #3498db;
+    background: #f8f9fa;
+}
+
+/* 返回顶部按钮优化 */
+#back-to-top {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0.7;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#back-to-top:hover {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* 整体页面样式优化 */
+.page-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* 优化间距和层次感 */
+.xe-widget {
+    margin-bottom: 25px;
+    padding: 20px;
+}
+
+.sidebar-menu .main-menu > li {
+    margin: 2px 0;
+}
+
+.sidebar-menu .main-menu > li > a {
+    padding: 12px 20px;
+    font-weight: 500;
+}
