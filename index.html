@@ -7,7 +7,7 @@
     <meta name="author" content="danbaixi" />
     <title>懂导航 - 做懂你的导航</title>
     <meta name="keywords" content="网址导航,设计资源,UI设计,网址大全,设计师导航,优秀网站,网站推荐,站库">
-    <meta name="description" content="懂导航 - 打造公众号网站和工具发现平台">
+    <meta name="description" content="懂导航 - 打造自媒体网站和工具发现平台">
     <link rel="shortcut icon" href="assets/images/favicon1.png">
     <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/xenon-core.css">
@@ -17,20 +17,8 @@
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/art-template.js"></script>
     <script src="assets/js/source.js"></script>
-	<!-- 集成不蒜子统计 -->
-<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
- -->	
-
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?193b12c1d2e86b55378df6ab2b47e6d5";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-        
+    <script async src="https://hm.baidu.com/hm.js?193b12c1d2e86b55378df6ab2b47e6d5"></script>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 <body class="page-body">
     <div class="page-container">
@@ -100,32 +88,36 @@
 			<!-- 首页 -->
 			<div class="main-container">
 			  <div class="stats-container">
-			    <div class="stats-title">打造公众号网站和工具发现平台</div>
-				<div class="stats-title1" style="letter-spacing:2px;">共收录了<span class="nav-total" style="color:#6772e5;"></span>个网站，点击<a href="https://wj.qq.com/s2/17305370/6cb2/" style="color:#6773E5;text-decoration: none;">加入频道</a>免费交流</div>
-			    <!-- <ul class="stats-list">
+			    <div class="stats-title" style="font-size: 28px; letter-spacing: 3px;">打造自媒体</span>网站和工具发现平台</div>
+				<!-- <div class="stats-title1" style="letter-spacing:2px;">共收录了<span class="nav-total" style="color:#6772e5;"></span>个网站，点击<a href="https://wj.qq.com/s2/17305370/6cb2/" style="color:#6773E5;text-decoration: none;">加入频道</a>免费交流</div> -->
+			    <ul class="stats-list">
 			      <li class="stat-item">
 			        <span class="stat-icon"><i class="fa fa-globe"></i></span>
-			        <span class="stat-number"><span class="nav-total" ></span></span>
+			        <span class="stat-number"><span class="nav-total" style="font-weight:600;font-size:24px;color:#6772e5;"></span></span>
 			        <span class="stat-description">网站数量</span>
 			      </li>
 			      <li class="stat-item">
 			        <span class="stat-icon"><i class="fa fa-eye"></i></span>
-			        <span class="stat-number" id="busuanzi_value_site_uv">0</span>
+			        <span class="stat-number" id="busuanzi_value_site_pv" style="font-weight:600;font-size:24px;color:#6772e5;">0</span>
 			        <span class="stat-description">访问人数</span>
 			      </li>
 			      <li class="stat-item">
 			        <span class="stat-icon"><i class="fa fa-gears"></i></span>
-			        <span class="stat-number" id="uptime" >0</span>
-					<script type="text/javascript">
-					    var urodz = new Date("2024-01-01"); // 网站启动日期
-					    var now = new Date();
-					    var ile = now.getTime() - urodz.getTime();
-					    var dni = Math.floor(ile / (1000 * 60 * 60 * 24)); // 计算天数
-					    document.getElementById('uptime').innerHTML = ' ' + dni + ' ';
-					  </script>
+			        <span class="stat-number" id="uptime" style="font-weight:600;font-size:24px;color:#6772e5;">0</span>
+			        <script type="text/javascript">
+			          var urodz = new Date();
+			          function updateUptime() {
+			            var now = new Date();
+			            var ile = now.getTime() - urodz.getTime();
+			            var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+			            document.getElementById('uptime').innerHTML = dni;
+			          }
+			          updateUptime();
+			          setInterval(updateUptime, 1000 * 60 * 60 * 24); // 每天更新一次
+			        </script>
 			        <span class="stat-description">运行天数</span>
 			      </li>
-			    </ul> -->
+			    </ul>
 			   <!-- 嗖嗖 -->
 			<div class="search">
 			    <form>
@@ -205,10 +197,10 @@
                     <div class="xe-comment-entry ">
                         <a class="xe-user-img" >
                             {{if n.image}}
-                            <img data-src="{{n.image}}" class="lozad" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <span style="display:none; background:{{n.title | randomColor}}">{{n.title | titleFirstWord}}</span>
+                            <img data-src="{{n.image}}" class="lozad" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="{{n.title}}">
+                            <span style="display:none; background:{{n.title | randomColor}}" aria-label="{{n.title}}">{{n.title | titleFirstWord}}</span>
                             {{else}}
-                            <span style="background:{{n.title | randomColor}}">{{n.title | titleFirstWord}}</span>
+                            <span style="background:{{n.title | randomColor}}" aria-label="{{n.title}}">{{n.title | titleFirstWord}}</span>
                             {{/if}}
                         </a>
                         <div class="xe-comment"> 
@@ -442,11 +434,11 @@
     })
 
 </script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/TweenMax.min.js"></script>
-<script src="assets/js/resizeable.js"></script>
-<script src="assets/js/xenon-toggles.js"></script>
-<script src="assets/js/xenon-custom.js"></script>
-<script src="assets/js/lozad.js"></script>
-<script src="assets/js/imagePreloader.js"></script>
+<script src="assets/js/bootstrap.min.js" defer></script>
+<script src="assets/js/TweenMax.min.js" defer></script>
+<script src="assets/js/resizeable.js" defer></script>
+<script src="assets/js/xenon-toggles.js" defer></script>
+<script src="assets/js/xenon-custom.js" defer></script>
+<script src="assets/js/lozad.js" defer></script>
+<script src="assets/js/imagePreloader.js" defer></script>
 
