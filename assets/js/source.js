@@ -1,10 +1,10 @@
 var navData = {
   "list": [
-    // {
-    //   "title": "最近使用",
-    //   "icon": "history",
-    //   "nav": []
-    // },
+    {
+      "title": "最近使用",
+      "icon": "history",
+      "nav": []
+    },
     {
       "title": "AI",
       "icon": "folder",

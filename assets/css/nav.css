@@ -41,13 +41,11 @@ background: rgba(103, 114, 229, 1);
     box-shadow: 0 4px 15px rgba(103, 114, 229, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    opacity: 0;
     transform: translateY(-5px);
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .tooltip.in .tooltip-inner {
-    opacity: 1;
     transform: translateY(0);
 }
 
@@ -316,4 +314,5 @@ letter-spacing: 1.2px;
 .sidebar-menu .main-menu {
     margin-bottom: 200px;
 }
+
 
