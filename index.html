@@ -1,273 +1,196 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="danbaixi">
-    <title>懂导航 - 做懂你的导航</title>
-    <meta name="keywords" content="网址导航,设计资源,UI设计,网址大全,设计师导航,优秀网站,网站推荐,站库">
-    <meta name="description" content="懂导航 - 打造自媒体网站和工具发现平台">
-    <link rel="shortcut icon" href="assets/images/favicon1.png">
-    
-    <!-- 优化的CSS加载 -->
-    <link rel="preload" href="assets/css/modern.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/modern.css"></noscript>
-    
-    <!-- 关键CSS内联 -->
-    <style>
-        /* 关键渲染路径CSS */
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
-        .page-loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; }
-        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #6772e5; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+    <title>Elegant Navigator</title>
+    <link rel="stylesheet" href="assets/css/elegant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 加载页面 -->
-    <div class="page-loading" id="pageLoading">
-        <div class="spinner"></div>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="bg-circle bg-circle-3"></div>
     </div>
 
-    <div class="app-container" id="app">
-        <!-- 侧边栏 -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <img src="assets/images/logo@2x1.png" alt="懂导航" class="logo-img">
-                </div>
-                <button class="sidebar-toggle" id="sidebarToggle" aria-label="切换侧边栏">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-            
-            <nav class="sidebar-nav" id="sidebarNav">
-                <!-- 动态生成导航菜单 -->
-            </nav>
-
-            <!-- 功能按钮区域 -->
-            <div class="sidebar-footer">
-                <button class="sidebar-btn" id="bookmarkBtn" title="书签管理">
-                    <i class="icon-bookmark"></i>
-                    <span>书签管理</span>
-                </button>
-                <button class="sidebar-btn" id="syncBtn" title="GitHub同步">
-                    <i class="icon-sync"></i>
-                    <span>数据同步</span>
-                </button>
-                <button class="sidebar-btn" id="contactBtn" title="联系我们">
-                    <i class="icon-message"></i>
-                    <span>联系我们</span>
-                </button>
-            </div>
-        </aside>
-
-        <!-- 主内容区 -->
-        <main class="main-content">
-            <!-- 顶部状态栏 -->
-            <header class="topbar">
-                <div class="topbar-content">
-                    <h1 class="site-title">打造自媒体网站和工具发现平台</h1>
-                    <div class="stats-row">
-                        <div class="stat-item">
-                            <i class="icon-globe"></i>
-                            <span class="stat-number" id="totalSites">0</span>
-                            <span class="stat-label">网站数量</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="icon-eye"></i>
-                            <span class="stat-number" id="totalViews">0</span>
-                            <span class="stat-label">访问人数</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="icon-clock"></i>
-                            <span class="stat-number" id="runningDays">0</span>
-                            <span class="stat-label">运行天数</span>
-                        </div>
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <div class="logo-icon">EN</div>
+                        <span class="logo-text">Elegant Navigator</span>
                     </div>
                 </div>
-            </header>
+                
+                <nav class="nav-tabs">
+                    <button class="nav-tab active" data-category="all">
+                        <span class="nav-tab-icon">🌟</span>
+                        <span class="nav-tab-text">全部</span>
+                        <span class="nav-tab-count" id="all-count">0</span>
+                    </button>
+                </nav>
 
-            <!-- 搜索栏 -->
-            <div class="search-container">
-                <div class="search-box">
-                    <i class="icon-search"></i>
-                    <input type="text" class="search-input" placeholder="搜索网站..." id="searchInput" autocomplete="off">
-                    <button class="search-clear" id="searchClear" style="display: none;">
-                        <i class="icon-close"></i>
+                <div class="header-actions">
+                    <button class="action-btn" id="searchToggle">
+                        <span class="action-icon">🔍</span>
+                    </button>
+                    <button class="action-btn" id="bookmarkBtn">
+                        <span class="action-icon">📚</span>
+                    </button>
+                    <button class="action-btn" id="themeToggle">
+                        <span class="action-icon">🌙</span>
                     </button>
                 </div>
-                <div class="search-suggestions" id="searchSuggestions" style="display: none;"></div>
+            </div>
+        </header>
+
+        <!-- 搜索区域 -->
+        <div class="search-section" id="searchSection">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="搜索网站、描述或关键词..." id="searchInput">
+                    <button class="search-clear" id="searchClear" style="display: none;">✕</button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 统计信息 -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🌐</div>
+                        <div class="stat-number" id="totalSites">0</div>
+                        <div class="stat-label">站点总数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📁</div>
+                        <div class="stat-number" id="totalCategories">0</div>
+                        <div class="stat-label">分类数量</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👁</div>
+                        <div class="stat-number" id="todayVisits">0</div>
+                        <div class="stat-label">今日访问</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-number" id="loadTime">0ms</div>
+                        <div class="stat-label">加载时间</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 网站列表容器 -->
-            <div class="sites-container" id="sitesContainer">
-                <!-- 动态生成网站卡片 -->
+            <!-- 网站展示区域 -->
+            <div class="sites-section">
+                <div class="sites-grid" id="sitesGrid">
+                    <!-- 网站卡片将在此动态生成 -->
+                </div>
             </div>
 
-            <!-- 返回顶部按钮 -->
-            <button class="back-to-top" id="backToTop" title="返回顶部">
-                <i class="icon-arrow-up"></i>
-            </button>
+            <!-- 空状态 -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <div class="empty-title">未找到相关内容</div>
+                <div class="empty-description">尝试调整搜索关键词或浏览其他分类</div>
+            </div>
         </main>
+
+        <!-- 返回顶部 -->
+        <button class="back-to-top" id="backToTop">
+            <span class="back-to-top-icon">↑</span>
+        </button>
     </div>
 
     <!-- 书签管理模态框 -->
     <div class="modal" id="bookmarkModal">
+        <div class="modal-backdrop"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h3>书签管理</h3>
-                <button class="modal-close" id="closeBookmarkModal">
-                    <i class="icon-close"></i>
-                </button>
+                <h3 class="modal-title">书签管理</h3>
+                <button class="modal-close" id="closeBookmarkModal">✕</button>
             </div>
             <div class="modal-body">
                 <div class="bookmark-tabs">
-                    <button class="tab-btn active" data-tab="import">导入书签</button>
-                    <button class="tab-btn" data-tab="export">导出数据</button>
-                    <button class="tab-btn" data-tab="manage">管理数据</button>
+                    <button class="bookmark-tab active" data-tab="import">导入书签</button>
+                    <button class="bookmark-tab" data-tab="export">导出备份</button>
+                    <button class="bookmark-tab" data-tab="sync">云端同步</button>
                 </div>
                 
-                <div class="tab-content" id="importTab">
-                    <div class="upload-area" id="uploadArea">
-                        <i class="icon-upload"></i>
-                        <p>拖拽书签文件到这里，或点击选择文件</p>
-                        <input type="file" id="bookmarkFile" accept=".html,.json" style="display: none;">
-                        <button class="btn-primary" onclick="document.getElementById('bookmarkFile').click()">选择文件</button>
-                    </div>
-                    <div class="import-options">
-                        <label><input type="checkbox" id="mergeData" checked> 与现有数据合并</label>
-                        <label><input type="checkbox" id="autoSync"> 导入后自动同步到GitHub</label>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="exportTab" style="display: none;">
-                    <div class="export-options">
-                        <button class="btn-primary" id="exportJson">导出为JSON</button>
-                        <button class="btn-secondary" id="exportHtml">导出为HTML书签</button>
-                        <button class="btn-secondary" id="exportBackup">创建完整备份</button>
-                    </div>
-                    <div class="export-preview" id="exportPreview"></div>
-                </div>
-
-                <div class="tab-content" id="manageTab" style="display: none;">
-                    <div class="data-stats">
-                        <div class="stat-card">
-                            <h4>数据统计</h4>
-                            <p>总分类: <span id="totalCategories">0</span></p>
-                            <p>总网站: <span id="totalWebsites">0</span></p>
-                            <p>最后更新: <span id="lastUpdate">未知</span></p>
+                <div class="bookmark-content">
+                    <div class="bookmark-panel active" id="importPanel">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">📁</div>
+                            <div class="upload-text">拖拽文件到此处或点击上传</div>
+                            <div class="upload-subtitle">支持 HTML 和 JSON 格式</div>
+                            <input type="file" id="fileInput" accept=".html,.json" style="display: none;">
+                        </div>
+                        <div class="import-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="mergeData" checked>
+                                <span class="checkbox-custom"></span>
+                                合并现有数据
+                            </label>
                         </div>
                     </div>
-                    <div class="data-actions">
-                        <button class="btn-warning" id="clearCache">清理缓存</button>
-                        <button class="btn-danger" id="resetData">重置所有数据</button>
+                    
+                    <div class="bookmark-panel" id="exportPanel">
+                        <div class="export-options">
+                            <button class="export-btn" id="exportJson">
+                                <span class="export-icon">📄</span>
+                                导出 JSON 格式
+                            </button>
+                            <button class="export-btn" id="exportHtml">
+                                <span class="export-icon">🌐</span>
+                                导出 HTML 格式
+                            </button>
+                            <button class="export-btn" id="exportBackup">
+                                <span class="export-icon">💾</span>
+                                完整备份
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bookmark-panel" id="syncPanel">
+                        <div class="sync-section">
+                            <div class="form-group">
+                                <label>GitHub Token</label>
+                                <input type="password" id="githubToken" placeholder="输入 GitHub Personal Access Token">
+                            </div>
+                            <div class="form-group">
+                                <label>仓库名称</label>
+                                <input type="text" id="githubRepo" placeholder="username/repository" value="bookmarks-backup">
+                            </div>
+                            <div class="sync-actions">
+                                <button class="sync-btn" id="uploadToGithub">上传到 GitHub</button>
+                                <button class="sync-btn secondary" id="downloadFromGithub">从 GitHub 下载</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- GitHub同步模态框 -->
-    <div class="modal" id="syncModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>GitHub数据同步</h3>
-                <button class="modal-close" id="closeSyncModal">
-                    <i class="icon-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="sync-setup" id="syncSetup">
-                    <h4>配置GitHub仓库</h4>
-                    <div class="form-group">
-                        <label>GitHub用户名:</label>
-                        <input type="text" id="githubUsername" placeholder="your-username">
-                    </div>
-                    <div class="form-group">
-                        <label>仓库名称:</label>
-                        <input type="text" id="githubRepo" placeholder="your-repo-name">
-                    </div>
-                    <div class="form-group">
-                        <label>访问令牌 (Personal Access Token):</label>
-                        <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx">
-                        <small>需要repo权限，<a href="https://github.com/settings/tokens" target="_blank">获取令牌</a></small>
-                    </div>
-                    <div class="form-group">
-                        <label>数据文件路径:</label>
-                        <input type="text" id="dataFilePath" value="data/sites.json" placeholder="data/sites.json">
-                    </div>
-                    <button class="btn-primary" id="testConnection">测试连接</button>
-                    <button class="btn-success" id="saveConfig">保存配置</button>
-                </div>
-
-                <div class="sync-actions" id="syncActions" style="display: none;">
-                    <div class="sync-status" id="syncStatus">
-                        <h4>同步状态</h4>
-                        <p>仓库: <span id="currentRepo">未配置</span></p>
-                        <p>最后同步: <span id="lastSync">从未</span></p>
-                        <p>状态: <span id="connectionStatus">未连接</span></p>
-                    </div>
-                    <div class="sync-buttons">
-                        <button class="btn-primary" id="pullData">从GitHub拉取</button>
-                        <button class="btn-success" id="pushData">推送到GitHub</button>
-                        <button class="btn-warning" id="autoSyncToggle">启用自动同步</button>
-                    </div>
-                    <div class="sync-log" id="syncLog"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 联系模态框 -->
-    <div class="modal" id="contactModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>联系方式</h3>
-                <button class="modal-close" id="closeContactModal">
-                    <i class="icon-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="icon-user"></i>
-                        <span>ajin-2024</span>
-                        <button class="copy-btn" data-copy="ajin-2024">复制</button>
-                    </div>
-                </div>
-                <p class="contact-note">添加时请备注来意</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast通知 -->
+    <!-- Toast 通知 -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- 核心脚本 -->
-    <script>
-        // 预加载重要数据
-        window.APP_CONFIG = {
-            version: '2.0.0',
-            startDate: '2025-01-01',
-            iconService: 'https://icon.horse/icon/',
-            enableCache: true,
-            enablePWA: false
-        };
-        
-        // 关键性能指标
-        window.performance.mark('app-start');
-    </script>
-    
-    <!-- 延迟加载的脚本 -->
-    <script src="assets/js/core.js" defer></script>
-    <script src="assets/js/bookmark-manager.js" defer></script>
-    <script src="assets/js/github-sync.js" defer></script>
-    <script src="assets/js/search.js" defer></script>
-    <script src="assets/js/ui.js" defer></script>
-    <script src="assets/js/data.js" defer></script>
+    <!-- 脚本 -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/bookmark-manager.js"></script>
+    <script src="assets/js/github-sync.js"></script>
+    <script src="assets/js/core.js"></script>
 </body>
 </html>
 
