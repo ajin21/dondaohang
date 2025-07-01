@@ -1,6 +1,11 @@
 var navData = {
   "list": [
     {
+      "title": "最近使用",
+      "icon": "history",
+      "nav": []
+    },
+    {
       "title": "懂导航",
       "icon": "folder",
       "child": [
@@ -129,16 +134,16 @@ var navData = {
               "image": "https://favicon.im/www.cimidata.com"
             },
             {
-              "title": "西瓜自媒体数据",
-              "desc": "西瓜自媒体数据",
-              "url": "https://data.xiguaji.com/",
-              "image": "https://favicon.im/data.xiguaji.com"
-            },
-            {
               "title": "AI文本检测",
               "desc": "AI文本检测",
               "url": "https://www.isgpt.org/",
               "image": "https://favicon.im/www.isgpt.org"
+            },
+            {
+              "title": "西瓜自媒体数据",
+              "desc": "西瓜自媒体数据",
+              "url": "https://data.xiguaji.com/",
+              "image": "https://favicon.im/data.xiguaji.com"
             }
           ]
         },
