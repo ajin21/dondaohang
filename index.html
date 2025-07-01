@@ -200,12 +200,7 @@
                 <div class="xe-widget xe-conversations box2 label-info site-box" data-toggle="tooltip" data-placement="bottom" title="{{n.desc}}" data-url="{{n.url}}">
                     <div class="xe-comment-entry ">
                         <a class="xe-user-img" >
-                            {{if n.image}}
-                            <img data-src="{{n.image}}" class="lozad" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="{{n.title}}">
-                            <span style="display:none; background:{{n.title | randomColor}}" aria-label="{{n.title}}">{{n.title | titleFirstWord}}</span>
-                            {{else}}
-                            <span style="background:{{n.title | randomColor}}" aria-label="{{n.title}}">{{n.title | titleFirstWord}}</span>
-                            {{/if}}
+                            <img data-src="{{n.image}}" class="lozad" loading="lazy" alt="{{n.title}}">
                         </a>
                         <div class="xe-comment"> 
                             <p class="title xe-user-name overflowClip_1" >{{n.title}}</p>
@@ -232,12 +227,7 @@
                     <div class="xe-widget xe-conversations box2 label-info site-box" data-toggle="tooltip" data-placement="bottom" title="{{n.desc}}" data-url="{{n.url}}">
                         <div class="xe-comment-entry">
                             <a class="xe-user-img">
-                                {{if n.image}}
-                                <img data-src="{{n.image}}" class="lozad" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                <span style="display:none; background:{{n.title | randomColor}}">{{n.title | titleFirstWord}}</span>
-                                {{else}}
-                                <span style="background:{{n.title | randomColor}}">{{n.title | titleFirstWord}}</span>
-                                {{/if}}
+                                <img data-src="{{n.image}}" class="lozad" alt="{{n.title}}">
                             </a>
                             <div class="xe-comment">
                                 <p class="title xe-user-name overflowClip_1">{{n.title}}</p>

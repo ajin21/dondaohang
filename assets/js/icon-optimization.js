@@ -1,96 +1,111 @@
-// 图标加载优化脚本
+// 图标加载优化脚本 - 使用icon.horse服务
 (function() {
     'use strict';
     
     // 图标缓存
     const iconCache = new Map();
     
-    // 默认图标 - 一个简单的SVG
-    const defaultIcon = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzZmNzJlNSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPj88L3RleHQ+Cjwvc3ZnPg==';
+    // 默认网站图标 - 简单的地球图标
+    const defaultIcon = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiM0Yjc2ODgiLz4KPHBhdGggZD0iTTggMTJjMi0yIDQtMiA2IDBzNCAyIDYgMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik04IDIwYzItMiA0LTIgNiAwczQgMiA2IDAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4=';
     
     // 预加载重要图标
     const priorityDomains = [
         'github.com',
-        'google.com', 
         'baidu.com',
         'tencent.com',
-        'alibaba.com'
+        'alibaba.com',
+        'bilibili.com',
+        'zhihu.com',
+        'weibo.com',
+        'taobao.com'
     ];
     
     // 预加载函数
     function preloadIcons() {
         priorityDomains.forEach(domain => {
             const img = new Image();
-            img.src = `https://www.google.com/s2/favicons?sz=32&domain=${domain}`;
+            img.src = `https://icon.horse/icon/${domain}`;
             img.onload = () => {
                 iconCache.set(domain, img.src);
+            };
+            img.onerror = () => {
+                // 预加载失败时使用默认图标
+                iconCache.set(domain, defaultIcon);
             };
         });
     }
     
-    // 优化的图标加载函数
-    function loadIconWithFallback(imgElement, domain) {
-        // 检查缓存
-        if (iconCache.has(domain)) {
-            imgElement.src = iconCache.get(domain);
-            return;
-        }
-        
-        // 设置超时
-        const timeout = setTimeout(() => {
-            imgElement.src = defaultIcon;
-            imgElement.style.display = 'block';
-            imgElement.nextElementSibling.style.display = 'none';
-        }, 3000); // 3秒超时
-        
-        const img = new Image();
-        img.onload = function() {
-            clearTimeout(timeout);
-            iconCache.set(domain, this.src);
-            imgElement.src = this.src;
-            imgElement.style.display = 'block';
-            imgElement.nextElementSibling.style.display = 'none';
-        };
-        
-        img.onerror = function() {
-            clearTimeout(timeout);
-            imgElement.src = defaultIcon;
-            imgElement.style.display = 'block';
-            imgElement.nextElementSibling.style.display = 'none';
-        };
-        
-        img.src = `https://www.google.com/s2/favicons?sz=32&domain=${domain}`;
+    // 从URL中提取域名
+    function extractDomain(url) {
+        if (!url) return '';
+        const match = url.match(/https:\/\/icon\.horse\/icon\/(.+)/);
+        return match ? match[1] : '';
     }
     
-    // 监听DOM变化，为新添加的图标元素添加优化
-    function observeNewIcons() {
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === 1) { // 元素节点
-                        const images = node.querySelectorAll ? node.querySelectorAll('img[data-src*="favicons"]') : [];
-                        images.forEach(optimizeIcon);
-                    }
-                });
-            });
+    // 优化图标加载函数
+    function optimizeIconLoading() {
+        const images = document.querySelectorAll('img.lozad');
+        
+        images.forEach(img => {
+            const src = img.getAttribute('data-src') || img.src;
+            if (!src || !src.includes('icon.horse')) return;
+            
+            const domain = extractDomain(src);
+            if (!domain) return;
+            
+            // 检查缓存
+            if (iconCache.has(domain)) {
+                if (img.getAttribute('data-src')) {
+                    img.src = iconCache.get(domain);
+                    img.removeAttribute('data-src');
+                } else {
+                    img.src = iconCache.get(domain);
+                }
+                return;
+            }
+            
+            // 设置加载超时
+            const timeout = setTimeout(() => {
+                if (!img.complete || img.naturalHeight === 0) {
+                    img.src = defaultIcon;
+                    iconCache.set(domain, defaultIcon);
+                }
+            }, 5000); // 增加到5秒
+            
+            // 图标加载成功
+            const onLoad = () => {
+                clearTimeout(timeout);
+                iconCache.set(domain, img.src);
+                img.removeEventListener('load', onLoad);
+                img.removeEventListener('error', onError);
+            };
+            
+            // 图标加载失败
+            const onError = () => {
+                clearTimeout(timeout);
+                img.src = defaultIcon;
+                iconCache.set(domain, defaultIcon);
+                img.removeEventListener('load', onLoad);
+                img.removeEventListener('error', onError);
+            };
+            
+            img.addEventListener('load', onLoad);
+            img.addEventListener('error', onError);
+        });
+    }
+    
+    // DOM变化监听
+    function observeChanges() {
+        const observer = new MutationObserver(() => {
+            optimizeIconLoading();
         });
         
         observer.observe(document.body, {
             childList: true,
             subtree: true
         });
-    }
-    
-    // 优化单个图标
-    function optimizeIcon(img) {
-        const dataSrc = img.getAttribute('data-src');
-        if (dataSrc && dataSrc.includes('favicons')) {
-            const domain = dataSrc.match(/domain=([^&]+)/);
-            if (domain && domain[1]) {
-                img.removeAttribute('data-src');
-                loadIconWithFallback(img, domain[1]);
-            }
-        }
+        
+        return observer;
     }
     
     // 初始化
@@ -99,31 +114,15 @@
         preloadIcons();
         
         // 优化现有图标
-        const existingImages = document.querySelectorAll('img[data-src*="favicons"]');
-        existingImages.forEach(optimizeIcon);
+        optimizeIconLoading();
         
-        // 监听新图标
-        observeNewIcons();
+        // 监听动态变化
+        observeChanges();
         
-        // 添加CSS样式
-        const style = document.createElement('style');
-        style.textContent = `
-            .xe-user-img img {
-                transition: opacity 0.2s ease;
-                border-radius: 4px;
-                background: #f5f5f5;
-            }
-            
-            .xe-user-img img[src="${defaultIcon}"] {
-                opacity: 0.8;
-            }
-        `;
-        document.head.appendChild(style);
-        
-        console.log('图标加载优化已启用');
+        console.log('Icon optimization initialized with icon.horse service');
     }
     
-    // DOM加载完成后初始化
+    // DOM加载完成后执行
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
