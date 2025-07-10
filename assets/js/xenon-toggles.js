@@ -26,7 +26,12 @@
 					setTimeout(function()
 					{
 						public_vars.$chat.find('.chat_inner').perfectScrollbar('update');
+						if(!window.xenonResizeTimeout) {
+					window.xenonResizeTimeout = setTimeout(function() {
+						delete window.xenonResizeTimeout;
 						$(window).trigger('xenon.resize');
+					}, 100);
+				}
 					}, 1);
 				}
 			});
@@ -54,7 +59,9 @@
 
 				TweenMax.to(scroll, (use_animation ? .1 : 0), {top: scroll.toTop, roundProps: ['top'], ease: scroll.toTop < 10 ? null : Sine.easeOut, onUpdate: function()
 					{
-						$(window).scrollTop( scroll.top );
+						requestAnimationFrame(function() {
+						$(window).scrollTop(scroll.top);
+					});
 					},
 					onComplete: function()
 					{

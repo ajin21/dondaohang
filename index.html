@@ -15,11 +15,13 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/nav.css">
     <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/font-update.css">
+    <link rel="stylesheet" href="assets/css/search-component.css">
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/art-template.js"></script>
     <script src="assets/js/source.js"></script>
     <script async src="https://hm.baidu.com/hm.js?193b12c1d2e86b55378df6ab2b47e6d5"></script>
-	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
 </head>
 <body class="page-body">
     <div class="page-container">
@@ -51,14 +53,7 @@
                         </a>
                     </div>
                 </header>
-                <!-- <div class="search">
-                    <form>
-                        <div class="form-group">
-                            <i class="fa fa-search"></i>
-                            <input class="form-control" type="text" name="search" placeholder="搜索网站">
-                        </div>
-                    </form>
-                </div> -->
+
                
                 <div id="menu-content" class="menu-content1"></div>
 				<!-- <div class="b">
@@ -88,47 +83,18 @@
 			</a>
 			<!-- 首页 -->
 			<div class="main-container">
-			  <div class="stats-container">
-			    <div class="stats-title" style="font-size: 28px; letter-spacing: 3px;">打造自媒体</span>网站和工具发现平台</div>
-				<!-- <div class="stats-title1" style="letter-spacing:2px;">共收录了<span class="nav-total" style="color:#6772e5;"></span>个网站，点击<a href="https://wj.qq.com/s2/17305370/6cb2/" style="color:#6773E5;text-decoration: none;">加入频道</a>免费交流</div> -->
-			    <ul class="stats-list">
-			      <li class="stat-item">
-			        <span class="stat-icon"><i class="fa fa-globe"></i></span>
-			        <span class="stat-number"><span class="nav-total" style="font-weight:600;font-size:24px;color:#6772e5;"></span></span>
-			        <span class="stat-description">网站数量</span>
-			      </li>
-			      <li class="stat-item">
-			        <span class="stat-icon"><i class="fa fa-eye"></i></span>
-			        <span class="stat-number" id="busuanzi_value_site_pv" style="font-weight:600;font-size:24px;color:#6772e5;">0</span>
-			        <span class="stat-description">访问人数</span>
-			      </li>
-			      <li class="stat-item">
-			        <span class="stat-icon"><i class="fa fa-gears"></i></span>
-			        <span class="stat-number" id="uptime" style="font-weight:600;font-size:24px;color:#6772e5;">0</span>
-			        <script type="text/javascript">
-			          var urodz = new Date('2025-01-01');
-			          function updateUptime() {
-			            var now = new Date();
-			            var ile = now.getTime() - urodz.getTime();
-			            var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
-			            document.getElementById('uptime').innerHTML = dni;
-			          }
-			          updateUptime();
-			          setInterval(updateUptime, 1000 * 60 * 60 * 24); // 每天更新一次
-			        </script>
-			        <span class="stat-description">运行天数</span>
-			      </li>
-			    </ul>
-			   <!-- 嗖嗖 -->
+			  <div class="stats-container" style="background: #fff; border-radius: 16px; padding: 40px 20px 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.03);">
+			    <div class="stats-title" style="font-size: 32px; letter-spacing: 2px; color: #333; font-weight: 600; margin-bottom: 16px; text-align: center; line-height: 1.4;">打造<span style="color: #6772e5; font-weight: 700;">自媒体</span>网站和工具发现平台</div>
+    <div class="stats-subtitle" style="font-size: 18px; color: #555; letter-spacing: 1px; margin-bottom: 30px; text-align: center; background: linear-gradient(to right, #f8f9fa, #fff, #f8f9fa); padding: 12px; border-radius: 100px; max-width: 300px; margin-left: auto; margin-right: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">已收录 <span class="nav-total" style="font-weight: 600;"></span> 个网站</div>
+			   <!-- 现代化搜索组件 -->
 			<div class="search">
-			    <form>
-			        <div class="form-group">
-			            <i class="fa fa-search"></i>
-			            <input class="form-control" type="text" name="search" placeholder="站内搜索">
-			        </div>
-			    </form>
-				
-			  </div>
+			    <!-- 搜索组件将通过JavaScript动态生成 -->
+			</div>
+			<script>
+			    document.addEventListener('DOMContentLoaded', function() {
+			        new SearchComponent();
+			    });
+			</script>
 			</div>
 <!-- 搜索 -->
            
@@ -142,7 +108,9 @@
         0 1px 2px rgba(0, 0, 0, 0.04),
         0 2px 4px rgba(0, 0, 0, 0.08);"><p>© 2022 - 2025 By
 <a style="text-decoration: none;color:#999fa7;" href="https://github.com/WebStackPage" target="_blank">WebStack-Hugo</a> |
-<a style="text-decoration: none;color:#999fa7;" href="https://github.com/danbaixi/zhanku" target="_blank">zhanku</a>
+<a style="text-decoration: none;color:#999fa7;" href="https://github.com/danbaixi/zhanku" target="_blank">zhanku</a> |
+<a style="text-decoration: none;color:#6772e5;" href=""  onclick="localStorage.clear(); location.reload();">清空最近使用</a>
+
 </p>
 				<p>本站内容源于互联网转载或网友投稿，仅供学习用。如有侵犯您的权益，请联系QQ：3197237971删除。</p>
 
@@ -252,25 +220,35 @@
 </script>
 
 <script type="text/javascript">
-    //缓存名称
+    // 更新最近使用网站数量
+    function updateRecentSitesCount() {
+        var history = localStorage.getItem(storageName);
+        var count = history ? JSON.parse(history).length : 0;
+        document.getElementById('recent-sites').textContent = count;
+    }
+    // 缓存名称
     var storageName = 'zk_history'
 
     $(document).ready(function() {
         refreshStorage()
         render()
+        // 更新最近使用网站数量
+        updateRecentSitesCount()
         // 初始化所有tooltip
         $('[data-toggle="tooltip"]').tooltip({
             container: 'body',
             animation: true
         });
-        //监听搜索
-        $("input[name='search']").bind('input propertychange',function(){
-            seach($(this).val())
-        })
+        // 旧的搜索监听已移除，使用新的搜索组件
          //img lazy loaded
          const observer = lozad('',{
-             rootMargin: '200px 0px',
-             threshold: 0.01
+             rootMargin: '2000px 0px', // 大幅增加预加载距离
+             threshold: 0, // 降低阈值以提前触发加载
+             loaded: function(el) {
+                 requestAnimationFrame(function() {
+                     el.classList.add('fade-in'); // 使用requestAnimationFrame优化动画性能
+                 });
+             }
          });
          observer.observe();
 
@@ -320,11 +298,18 @@
             return title.substr(0,1)
         }
         //注册过滤器，根据标题获取背景颜色
-        template.defaults.imports.randomColor = function(title){
+        template.defaults.imports.randomColor = (function(){
             var colors = ['#084177','#2b580c','#1eb2a6','#721b65','#f8615a','#a8d3da','#a8e6cf','#4f3961','#f1935c']
-            var index = title.length % colors.length 
-            return colors[index]
-        }
+            var colorCache = new Map()
+            return function(title){
+                if (colorCache.has(title)) {
+                    return colorCache.get(title)
+                }
+                var color = colors[title.length % colors.length]
+                colorCache.set(title, color)
+                return color
+            }
+        })()
         //注册过滤器，获取分类下网站个数
         template.defaults.imports.getNavLength = function(nav,title){
             if(title != "最近使用"){
@@ -333,30 +318,48 @@
             return nav.length
         }
         var data = navData
+        // 使用DocumentFragment优化DOM操作
+        var fragment = document.createDocumentFragment()
+        var menuContent = document.getElementById('menu-content')
+        var navList = document.getElementById('nav-list')
+        
         var category = template('menu',data)
         var list = template('list',data)
-        document.getElementById('menu-content').innerHTML = category
-        document.getElementById('nav-list').innerHTML = list
-        $(".nav-total").html(navTotal)
-    }
-
-    //搜索
-    function seach(keyWord){
-        var keyWord = keyWord ? keyWord.toLowerCase() : ''
-        $(document).find(".xe-comment").each(function(i,e){
-            var title = $(e).find(".title").html().toLowerCase()
-            var desc = $(e).find(".desc").html().toLowerCase()
-            var url = $(e).parents(".box2").data("url")
-            var parent = $(e).parents(".col-sm-3")
-            if((title.indexOf(keyWord) != -1 || desc.indexOf(keyWord) != -1) || url.indexOf(keyWord) != -1){
-                if(parent.hasClass("hide")){
-                    parent.removeClass("hide")
+        
+        // 批量更新DOM
+        requestAnimationFrame(function() {
+            menuContent.innerHTML = category
+            navList.innerHTML = list
+            $(".nav-total").html(navTotal)
+            
+            // 初始化图片预加载
+            if (window.initializeImagePreloader) {
+                window.initializeImagePreloader();
+            }
+            
+            // 初始化懒加载
+            const observer = lozad('', {
+                rootMargin: '2000px 0px', // 统一预加载距离
+                threshold: 0,
+                load: function(el) { // 提前开始加载
+                    el.src = el.dataset.src;
+                },
+                loaded: function(el) {
+                    requestAnimationFrame(function() {
+                        el.classList.add('fade-in');
+                    });
                 }
-            }else if(!parent.hasClass("hide")){
-                parent.addClass("hide")
+            });
+            observer.observe();
+            
+            // 初始化现代化搜索组件
+            if (window.SearchComponent) {
+                window.modernSearch = new window.SearchComponent();
             }
         })
     }
+
+    // 旧的搜索函数已移除，使用新的搜索组件
 
     //刷新最近访问历史
     function refreshStorage(){
@@ -365,6 +368,13 @@
             return
         }
         history = JSON.parse(history)
+        // 确保每个历史记录都有image属性
+        history = history.map(function(item) {
+            if (!item.image) {
+                item.image = 'https://favicon.im/' + new URL(item.url).hostname;
+            }
+            return item;
+        });
         navData.list[0].nav = history
     }
 
@@ -376,7 +386,19 @@
         data.list.push(navData.list[0])
         var list = template('list', data)
         $("#nav-list").prepend(list)
-        const observer = lozad();
+        updateRecentSitesCount() // 更新最近使用数量
+        const observer = lozad('', {
+            rootMargin: '2000px 0px', // 统一预加载距离
+            threshold: 0,
+            load: function(el) { // 提前开始加载
+                el.src = el.dataset.src;
+            },
+            loaded: function(el) {
+                requestAnimationFrame(function() {
+                    el.classList.add('fade-in');
+                });
+            }
+        });
         observer.observe();
     }
 
@@ -422,14 +444,10 @@
             //不在历史列表中
             var title = $(this).find(".title").html()
             var desc = $(this).find(".desc").html()
-            var image = ""
+            var image = 'https://favicon.im/' + new URL(url).hostname;
             if($(this).find(".xe-user-img img").length > 0){
                 //有logo
-                var imageUrl = $($(this).find(".xe-user-img img")[0]).data('src')
-                var tmp = imageUrl.split('/')
-                if(tmp.length > 0){
-                    image = tmp[tmp.length-1]
-                }
+                image = $($(this).find(".xe-user-img img")[0]).data('src')
             }
             var data = {
                 title: title,
@@ -450,6 +468,7 @@
 <script src="assets/js/xenon-custom.js" defer></script>
 <script src="assets/js/lozad.js" defer></script>
 <script src="assets/js/imagePreloader.js" defer></script>
+<script src="assets/js/search-component.js" defer></script>
 
 <!-- 联系弹出框 -->
 <div class="contact-modal" id="contactModal">

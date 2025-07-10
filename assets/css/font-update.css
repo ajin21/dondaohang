@@ -1,0 +1,238 @@
+/* 系统字体设置 - 应用到所有元素 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, button, select, textarea {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* 使用Unicode Emoji替代FontAwesome图标 */
+.fa-search:before {
+    content: "🔍";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-history:before {
+    content: "⏱️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-folder:before {
+    content: "📁";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-globe:before {
+    content: "🌐";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-eye:before {
+    content: "👁️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-gears:before,
+.fa-cogs:before {
+    content: "⚙️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-bars:before {
+    content: "☰";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-comments:before {
+    content: "💬";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-paper-plane-o:before {
+    content: "✉️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-ils:before {
+    content: "📌";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* 更多常用图标替换 */
+.fa-home:before {
+    content: "🏠";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-user:before {
+    content: "👤";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-users:before {
+    content: "👥";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-cog:before,
+.fa-gear:before {
+    content: "⚙️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-star:before {
+    content: "⭐";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-star-o:before {
+    content: "☆";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-heart:before {
+    content: "❤️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-heart-o:before {
+    content: "♡";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-bookmark:before {
+    content: "🔖";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-bookmark-o:before {
+    content: "🔖";
+    font-family: system-ui, -apple-system, sans-serif;
+    opacity: 0.7;
+}
+
+.fa-calendar:before {
+    content: "📅";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-clock-o:before {
+    content: "🕒";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-refresh:before {
+    content: "🔄";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-lock:before {
+    content: "🔒";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-unlock:before {
+    content: "🔓";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-link:before {
+    content: "🔗";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-external-link:before {
+    content: "↗️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-question-circle:before {
+    content: "❓";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-info-circle:before {
+    content: "ℹ️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-exclamation-circle:before {
+    content: "⚠️";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-check:before {
+    content: "✅";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-times:before {
+    content: "❌";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-plus:before {
+    content: "➕";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-minus:before {
+    content: "➖";
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* 调整Emoji图标的样式 */
+.fa {
+    display: inline-block;
+    font-size: 1.1em;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+/* 确保Emoji图标在各种场景下的对齐和大小一致 */
+.stat-icon .fa,
+.function-button1 .fa,
+.function-button2 .fa {
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+
+/* 优化字体渲染 */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* 确保Emoji图标在所有浏览器中正确显示 */
+.fa:before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* 优化移动设备上的显示 */
+@media (max-width: 768px) {
+    .fa {
+        font-size: 1.2em;
+    }
+    
+    .stat-icon .fa,
+    .function-button1 .fa,
+    .function-button2 .fa {
+        font-size: 1.3em;
+    }
+}
