@@ -971,7 +971,7 @@ background-color:#f3f3f3;
   position: fixed; /* 固定位置，不随页面滚动 */
   top: 70; /* 从顶部开始 */
   left: 0; /* 从左侧开始 */
-  width: 200px; /* 导航栏宽度，根据需要调整 */
+
   height: 100%; /* 导航栏高度，占满整个视口高度 */
   overflow-y: auto; /* 当内容超出高度时，显示垂直滚动条 */
   background-color: #ffffff; /* 导航栏背景颜色，根据需要调整 */
