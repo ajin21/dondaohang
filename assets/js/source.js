@@ -500,6 +500,12 @@ var navData = {
           "desc": "一键获取微信公众号历史消息链接",
           "url": "https://www.weixinzg.cn/getHomeUrl.html",
           "image": "https://favicon.im/www.weixinzg.cn"
+        },
+        {
+          "title": "免费在线拼图工具 - 自由布局与长图拼接 - 运维咖啡吧",
+          "desc": "免费在线拼图工具 - 自由布局与长图拼接 - 运维咖啡吧",
+          "url": "https://img.ops-coffee.cn/app/",
+          "image": "https://favicon.im/img.ops-coffee.cn"
         }
       ]
     },
@@ -589,7 +595,7 @@ var navData = {
     },
     {
       "title": "AI工具",
-      "icon": "folder",
+      "icon": "robot",
       "nav": [
         {
           "title": "Chat100.ai：免费使用ChatGPT 4o和Claude 3.5 Sonnet",
@@ -608,6 +614,18 @@ var navData = {
           "desc": "图片封面制作 - Cover Page",
           "url": "https://www.coverpage.one/image",
           "image": "https://favicon.im/www.coverpage.one"
+        }
+      ]
+    },
+    {
+      "title": "下载工具",
+      "icon": "folder",
+      "nav": [
+        {
+          "title": "公众号视频下载 - 吾爱破解 - 52pojie.cn",
+          "desc": "公众号视频下载 - 吾爱破解 - 52pojie.cn",
+          "url": "https://www.52pojie.cn/thread-2044080-1-1.html",
+          "image": "https://favicon.im/www.52pojie.cn"
         }
       ]
     }
