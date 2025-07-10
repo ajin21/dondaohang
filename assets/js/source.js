@@ -589,7 +589,7 @@ var navData = {
     },
     {
       "title": "AI工具",
-      "icon": "robot",
+      "icon": "folder",
       "nav": [
         {
           "title": "Chat100.ai：免费使用ChatGPT 4o和Claude 3.5 Sonnet",
