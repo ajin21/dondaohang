@@ -971,8 +971,13 @@ background-color:#f3f3f3;
   position: fixed; /* 固定位置，不随页面滚动 */
   top: 70; /* 从顶部开始 */
   left: 0; /* 从左侧开始 */
+<<<<<<< HEAD
   
   height: 100%; /* 导航栏滑动高度，占满整个视口高度 */
+=======
+
+  height: 100%; /* 导航栏高度，占满整个视口高度 */
+>>>>>>> dbfeefc19c27569edc529881115b6b31b423f719
   overflow-y: auto; /* 当内容超出高度时，显示垂直滚动条 */
   background-color: #ffffff; /* 导航栏背景颜色，根据需要调整 */
       box-shadow: 
