@@ -15,23 +15,36 @@
     position: relative;
     display: flex;
     align-items: center;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 50px;
     padding: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 
+        0 8px 32px rgba(59, 130, 246, 0.08),
+        0 4px 16px rgba(59, 130, 246, 0.05),
+        0 2px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
 
 .search-input-wrapper:hover {
-    border-color: #e0e0e0;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border-color: rgba(59, 130, 246, 0.25);
+    box-shadow: 
+        0 12px 40px rgba(59, 130, 246, 0.12),
+        0 6px 20px rgba(59, 130, 246, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .modern-search-container.search-focused .search-input-wrapper {
-    border-color: #6772e5;
-    box-shadow: 0 0 0 3px rgba(103, 114, 229, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 
+        0 0 0 4px rgba(59, 130, 246, 0.06),
+        0 16px 50px rgba(59, 130, 246, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .search-icon {
@@ -39,13 +52,14 @@
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-    color: #6772e5;
+    color: rgba(59, 130, 246, 0.8);
     font-size: 16px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .modern-search-container.search-focused .search-icon {
-    color: #6772e5;
+    color: rgba(59, 130, 246, 1);
+    transform: scale(1.1);
 }
 
 .modern-search-input {
@@ -89,11 +103,16 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(173, 109, 244, 0.2);
     border-radius: 16px;
     margin-top: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 
+        0 12px 40px rgba(173, 109, 244, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
     overflow: hidden;
     z-index: 1001;
     animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,8 +134,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px 20px;
-    background: #f8f9fa;
-    border-bottom: 1px solid #f0f0f0;
+    background: rgba(173, 109, 244, 0.05);
+    border-bottom: 1px solid rgba(173, 109, 244, 0.1);
 }
 
 .suggestions-title {
@@ -128,10 +147,11 @@
 
 .suggestions-count {
     font-size: 12px;
-    color: #666;
-    background: #f0f0f0;
+    color: rgba(173, 109, 244, 0.8);
+    background: rgba(173, 109, 244, 0.1);
     padding: 4px 10px;
     border-radius: 100px;
+    font-weight: 500;
 }
 
 .search-suggestions-list {
@@ -154,8 +174,10 @@
 
 .suggestion-item:hover,
 .suggestion-item.active {
-    background: #f8f9fa;
+    background: rgba(173, 109, 244, 0.05);
     transform: translateX(4px);
+    border-left: 3px solid rgba(173, 109, 244, 0.3);
+    padding-left: 17px;
 }
 
 .suggestion-icon {

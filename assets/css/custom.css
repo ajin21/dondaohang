@@ -128,6 +128,35 @@
     z-index: -1;
 }
 
+/* 顶部功能按钮悬停边框效果 */
+.top-function-button {
+    position: relative;
+    border: 2px solid transparent !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 联系按钮悬停边框 */
+.top-function-button.contact-style:hover {
+    border: 2px solid #64748b !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(100, 116, 139, 0.2) !important;
+}
+
+/* 提交按钮悬停边框 */
+.top-function-button.submit-style:hover {
+    border: 2px solid #3b82f6 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2) !important;
+}
+
 /* 返回顶部按钮优化 */
 #back-to-top {
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
