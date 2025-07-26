@@ -1,0 +1,247 @@
+/**
+ * 移动端卡片显示修复
+ * Mobile Card Display Fix
+ * 
+ * 专门解决移动端卡片显示不完整的问题
+ */
+
+/* 移动端卡片强制修复 */
+@media (max-width: 768px) {
+    /* 强制重置所有可能影响卡片显示的样式 */
+    .col-sm-3,
+    .col-lg-2,
+    .col-md-3,
+    .col-xs-6,
+    .col-6,
+    .col-4,
+    .col-3,
+    div[class*="col-"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex: none !important;
+        float: none !important;
+        padding: 0 !important;
+        margin: 0 0 12px 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        display: block !important;
+        clear: both !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
+    
+    /* 强制修复卡片容器 */
+    .xe-widget,
+    .box2,
+    .site-box,
+    .xe-widget.xe-conversations.box2.label-info.site-box,
+    div[class*="xe-widget"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 0 12px 0 !important;
+        padding: 16px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        overflow: hidden !important;
+        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(8px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+        transition: all 0.3s ease !important;
+        min-height: 80px !important;
+        float: none !important;
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: auto !important;
+        transform: none !important;
+        clear: both !important;
+    }
+    
+    /* 强制修复图片容器 */
+    .xe-comment-entry {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        flex-direction: row !important;
+    }
+    
+    .xe-user-img {
+        flex-shrink: 0 !important;
+        margin-right: 12px !important;
+        width: 40px !important;
+        height: 40px !important;
+        display: block !important;
+    }
+    
+    .xe-user-img img {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 8px !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+    
+    /* 强制修复文字内容 */
+    .xe-comment {
+        flex: 1 !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .xe-comment .title,
+    .xe-comment .title.xe-user-name.overflowClip_1 {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        color: #333 !important;
+        line-height: 1.4 !important;
+        margin: 0 0 4px 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+    
+    .xe-comment .desc,
+    .xe-comment .desc.overflowClip_2 {
+        font-size: 13px !important;
+        color: #666 !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+    
+    /* 强制修复容器 */
+    .nav-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .nav-item .row {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .nav-item .row > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        padding: 0 !important;
+        margin-bottom: 12px !important;
+    }
+    
+    /* 强制修复主要容器 */
+    .page-container,
+    .main-content,
+    .main-container,
+    .stats-container,
+    #nav-list,
+    .row,
+    .container,
+    .container-fluid {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .main-content {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 80px !important;
+    }
+    
+    #nav-list {
+        padding: 0 !important;
+    }
+    
+    /* 清除浮动 */
+    .clearfix::after,
+    .row::after,
+    .nav-item::after {
+        content: "" !important;
+        display: table !important;
+        clear: both !important;
+    }
+}
+
+/* 小屏幕进一步优化 */
+@media (max-width: 480px) {
+    .xe-widget,
+    .box2 {
+        padding: 12px !important;
+        min-height: 70px !important;
+    }
+    
+    .xe-user-img {
+        width: 36px !important;
+        height: 36px !important;
+        margin-right: 10px !important;
+    }
+    
+    .xe-user-img img {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    
+    .xe-comment .title {
+        font-size: 13px !important;
+    }
+    
+    .xe-comment .desc {
+        font-size: 11px !important;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 360px) {
+    .main-content {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    
+    .xe-widget,
+    .box2 {
+        padding: 10px !important;
+        min-height: 65px !important;
+    }
+    
+    .xe-user-img {
+        width: 32px !important;
+        height: 32px !important;
+        margin-right: 8px !important;
+    }
+    
+    .xe-user-img img {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}

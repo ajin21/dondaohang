@@ -4,33 +4,123 @@
  */
 
 $(document).ready(function() {
-    // 回到顶部功能
+    // 回到顶部功能 - 现代化实现
     var backToTop = $('#back-to-top');
+    var isScrolling = false;
     
-    // 初始隐藏回到顶部按钮
-    backToTop.hide();
-    
-    // 监听滚动事件
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 300) {
-            backToTop.fadeIn();
-        } else {
-            backToTop.fadeOut();
-        }
+    // 调试：强制显示按钮
+    console.log('Back to top button found:', backToTop.length);
+    backToTop.addClass('show');
+    backToTop.css({
+        'opacity': '1',
+        'visibility': 'visible',
+        'transform': 'translateY(0) scale(1)',
+        'z-index': '99999',
+        'position': 'fixed',
+        'bottom': '20px',
+        'right': '20px'
     });
     
-    // 点击回到顶部
-    backToTop.click(function() {
+    // 初始隐藏回到顶部按钮（暂时注释掉）
+    // backToTop.removeClass('show');
+    
+    // 优化的滚动监听 - 使用节流
+    function handleScroll() {
+        if (!isScrolling) {
+            window.requestAnimationFrame(function() {
+                const scrollTop = $(window).scrollTop();
+                
+                if (scrollTop > 300) {
+                    backToTop.addClass('show');
+                } else {
+                    backToTop.removeClass('show');
+                }
+                
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    }
+    
+    // 监听滚动事件
+    $(window).on('scroll', handleScroll);
+    
+    // 点击回到顶部 - 增强动效
+    backToTop.on('click touchend', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        console.log('Back to top button clicked!');
+        
+        // 添加点击反馈
+        $(this).addClass('clicking');
+        setTimeout(() => {
+            $(this).removeClass('clicking');
+        }, 150);
+        
+        // 平滑滚动到顶部
         $('html, body').animate({
             scrollTop: 0
-        }, 600);
+        }, {
+            duration: 800,
+            easing: 'swing', // 使用更兼容的easing
+            complete: function() {
+                console.log('Scroll to top completed');
+                // 滚动完成后的回调（暂时不隐藏按钮）
+                // backToTop.removeClass('show');
+            }
+        });
+        
         return false;
+    });
+    
+    // 添加触摸事件处理
+    backToTop.on('touchstart', function(e) {
+        console.log('Touch start on back to top button');
+        $(this).addClass('touching');
+    });
+    
+    backToTop.on('touchend', function(e) {
+        console.log('Touch end on back to top button');
+        $(this).removeClass('touching');
     });
     
     // 联系弹窗功能
     $('#contact-btn').click(function() {
         showContactModal();
     });
+    
+    // 顶部联系按钮
+    $('#contact-btn-top').click(function() {
+        showContactModal();
+    });
+    
+    // 移动端联系按钮
+    $('#mobile-contact-btn').click(function() {
+        showContactModal();
+    });
+    
+    // 检查增强版按钮是否已加载
+    setTimeout(() => {
+        if (window.EnhancedBackToTop) {
+            console.log('✅ Enhanced Back to Top loaded successfully');
+            // 如果增强版已加载，禁用基础版本的滚动监听
+            $(window).off('scroll', handleScroll);
+        } else {
+            console.warn('⚠️ Enhanced Back to Top not loaded, using fallback');
+        }
+    }, 1000);
+    
+    // 额外的调试信息
+    setTimeout(() => {
+        console.log('Button visibility check:', {
+            exists: $('#back-to-top').length > 0,
+            visible: $('#back-to-top').is(':visible'),
+            opacity: $('#back-to-top').css('opacity'),
+            zIndex: $('#back-to-top').css('z-index'),
+            position: $('#back-to-top').css('position')
+        });
+    }, 2000);
 });
 
 // 显示联系弹窗

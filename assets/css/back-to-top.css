@@ -1,0 +1,490 @@
+/**
+ * 一键上滑按钮样式
+ * Enhanced Back to Top Button Styles
+ */
+
+/* 基础按钮样式 - 精致小巧版 */
+#back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    text-decoration: none;
+
+    /* 防止文本选择 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    /* 触摸优化 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 按钮显示状态 */
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* 悬停效果 - 精致小巧版 */
+#back-to-top:hover {
+    transform: translateY(-6px) scale(1.08);
+    box-shadow:
+        0 12px 36px rgba(59, 130, 246, 0.2),
+        0 6px 18px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* 点击效果 - 精致小巧版 */
+#back-to-top:active,
+#back-to-top.clicking {
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.1s ease;
+    box-shadow:
+        0 8px 24px rgba(59, 130, 246, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* 图标样式优化 - 完美居中 */
+#back-to-top img {
+    width: 16px;
+    height: 16px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+
+    /* 确保图标完美居中 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#back-to-top:hover img {
+    transform: translate(-50%, -50%) translateY(-2px);
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+/* 脉冲动画效果 */
+#back-to-top::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: linear-gradient(45deg,
+            rgba(59, 130, 246, 0.3),
+            rgba(147, 197, 253, 0.2),
+            rgba(59, 130, 246, 0.3));
+    opacity: 0;
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    z-index: -1;
+}
+
+#back-to-top:hover::before {
+    animation-duration: 1s;
+    opacity: 1;
+}
+
+/* 内部光晕效果 */
+#back-to-top::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+#back-to-top:hover::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* 进度环样式 - 精致小巧版 */
+.back-to-top-progress {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.progress-ring {
+    width: 48px;
+    height: 48px;
+    transform: rotate(-90deg);
+    transition: all 0.3s ease;
+}
+
+.progress-ring-circle {
+    r: 22;
+    cx: 24;
+    cy: 24;
+    fill: transparent;
+    stroke: rgba(59, 130, 246, 0.3);
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s ease, stroke 0.3s ease;
+}
+
+/* 涟漪效果 */
+.ripple-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.ripple-effect.active {
+    animation: rippleExpand 0.6s ease-out;
+}
+
+/* 动画关键帧 */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+@keyframes backToTopSlideIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.8) rotate(180deg);
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes backToTopSlideOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.8) rotate(-180deg);
+    }
+}
+
+@keyframes backToTopBounce {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    25% {
+        transform: translateY(-8px) scale(1.1);
+    }
+
+    50% {
+        transform: translateY(-4px) scale(1.05);
+    }
+
+    75% {
+        transform: translateY(-2px) scale(1.02);
+    }
+}
+
+@keyframes rippleExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+
+    100% {
+        width: 88px;
+        height: 88px;
+        opacity: 0;
+    }
+}
+
+/* 增强版按钮特殊状态 */
+#back-to-top[data-enhanced="true"].hover-active .progress-ring-circle {
+    stroke: rgba(59, 130, 246, 0.8);
+    stroke-width: 3;
+}
+
+#back-to-top[data-enhanced="true"].touch-active {
+    transform: translateY(-4px) scale(0.95);
+}
+
+#back-to-top[data-enhanced="true"].clicking {
+    transform: translateY(-6px) scale(1.05);
+}
+
+/* 移动端隐藏一键上滑按钮 */
+@media (max-width: 768px) {
+    #back-to-top {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    #back-to-top img {
+        width: 16px;
+        height: 16px;
+    }
+
+    #back-to-top:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+
+    #back-to-top:active,
+    #back-to-top.clicking {
+        transform: translateY(-2px) scale(1.02);
+    }
+
+    /* 移动端进度条优化 */
+    .back-to-top-progress {
+        width: 48px;
+        height: 48px;
+        top: -2px;
+        left: -2px;
+    }
+
+    .progress-ring {
+        width: 48px;
+        height: 48px;
+    }
+
+    .progress-ring-circle {
+        r: 22;
+        cx: 24;
+        cy: 24;
+        stroke-width: 2.5;
+        stroke: rgba(59, 130, 246, 0.4);
+    }
+
+    /* 移动端进度条激活状态 */
+    #back-to-top[data-enhanced="true"].hover-active .progress-ring-circle {
+        stroke: rgba(59, 130, 246, 0.8);
+        stroke-width: 3;
+    }
+
+    /* 移动端涟漪效果调整 */
+    .ripple-effect.active {
+        animation: rippleExpandMobile 0.5s ease-out;
+    }
+
+    @keyframes rippleExpandMobile {
+        0% {
+            width: 0;
+            height: 0;
+            opacity: 0.6;
+        }
+
+        100% {
+            width: 80px;
+            height: 80px;
+            opacity: 0;
+        }
+    }
+}
+
+/* 小屏幕设备 - 精致小巧版 */
+@media (max-width: 480px) {
+    #back-to-top {
+        width: 36px;
+        height: 36px;
+        bottom: 14px;
+        right: 14px;
+    }
+
+    #back-to-top img {
+        width: 12px;
+        height: 12px;
+    }
+
+    #back-to-top:hover {
+        transform: translateY(-2px) scale(1.03);
+    }
+
+    #back-to-top:active,
+    #back-to-top.clicking {
+        transform: translateY(-1px) scale(1.01);
+    }
+
+    .back-to-top-progress {
+        width: 40px;
+        height: 40px;
+    }
+
+    .progress-ring {
+        width: 40px;
+        height: 40px;
+    }
+
+    .progress-ring-circle {
+        r: 18;
+        cx: 20;
+        cy: 20;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    #back-to-top {
+        background: #ffffff;
+        border: 2px solid #000000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #back-to-top:hover {
+        background: #f0f0f0;
+        border-color: #333333;
+    }
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+    #back-to-top {
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    #back-to-top::before {
+        animation: none;
+    }
+
+    #back-to-top:hover {
+        transform: none;
+    }
+
+    .progress-ring-circle {
+        transition: none;
+    }
+
+    .ripple-effect.active {
+        animation: none;
+    }
+
+    #back-to-top[data-enhanced="true"] {
+        animation: none !important;
+    }
+}
+
+/* 暗色主题支持 */
+@media (prefers-color-scheme: dark) {
+    #back-to-top {
+        background: rgba(30, 30, 30, 0.95);
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            0 2px 8px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    #back-to-top:hover {
+        background: rgba(40, 40, 40, 1);
+        border-color: rgba(59, 130, 246, 0.4);
+        box-shadow:
+            0 16px 48px rgba(59, 130, 246, 0.2),
+            0 8px 24px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    #back-to-top img {
+        filter: invert(1) drop-shadow(0 1px 2px rgba(255, 255, 255, 0.1));
+    }
+
+    #back-to-top:hover img {
+        filter: invert(1) drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+    }
+}
+
+/* 键盘导航支持 */
+#back-to-top:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+#back-to-top:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* 打印样式 */
+@media print {
+    #back-to-top {
+        display: none !important;
+    }
+}
+
+/* 横屏模式优化 */
+@media (orientation: landscape) and (max-height: 500px) {
+    #back-to-top {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #back-to-top img {
+        width: 16px;
+        height: 16px;
+    }
+}

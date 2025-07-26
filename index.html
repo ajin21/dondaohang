@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="author" content="danbaixi" />
     <title>懂导航 - 做懂你的导航</title>
     <meta name="keywords" content="网址导航,设计资源,UI设计,网址大全,设计师导航,优秀网站,网站推荐,站库">
@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="assets/css/font-update.css">
     <link rel="stylesheet" href="assets/css/search-component.css">
     <link rel="stylesheet" href="assets/css/announcement-feishu.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/mobile-enhancements.css">
+    <link rel="stylesheet" href="assets/css/back-to-top.css">
     <style>
         /* 公告系统动画效果 */
         @keyframes announcementSlideIn {
@@ -294,12 +297,12 @@
             padding: 10px 18px 10px 8px !important;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
             position: fixed !important;
-            top: 85px !important;
+            top: 65px !important;
             left: 35px !important;
             bottom: 20px !important;
             width: calc(260px - 30px) !important;
-            height: calc(100vh - 105px) !important;
-            max-height: calc(100vh - 105px) !important;
+            height: calc(100vh - 75px) !important;
+            max-height: calc(100vh - 75px) !important;
             overflow-y: auto !important;
         }
 
@@ -472,9 +475,238 @@
             background: rgba(59, 130, 246, 0.05) !important;
             color: #3b82f6 !important;
         }
+
+        /* 页脚动画样式 */
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+        }
+
+        .footer-container:hover {
+            transform: translateY(-2px) !important;
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.12),
+                0 4px 12px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* 加载动画 */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 移动端专用样式 - 隐藏侧边栏，主内容占满全屏 */
+        @media (max-width: 768px) {
+            /* 完全隐藏侧边栏相关元素 */
+            .sidebar-menu,
+            .mobile-menu-toggle,
+            .mobile-overlay {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+            
+            /* 主内容区域占满全屏 */
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 16px !important;
+                min-height: 100vh !important;
+            }
+            
+            /* 页面容器调整 */
+            .page-container {
+                padding-left: 0 !important;
+                width: 100% !important;
+            }
+            
+            /* 确保主容器占满全屏 */
+            .main-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            /* 统计容器调整 */
+            .stats-container {
+                padding: 40px 16px 20px !important;
+                margin: 0 !important;
+            }
+            
+            /* 标题调整 */
+            .stats-title {
+                font-size: 24px !important;
+                letter-spacing: 2px !important;
+                margin: 20px 0 !important;
+                padding: 0 8px !important;
+            }
+            
+            /* 公告系统调整 */
+            .announcement-container {
+                margin: 15px 8px !important;
+                width: calc(100% - 16px) !important;
+            }
+            
+            /* 搜索组件调整 */
+            .search {
+                margin: 0 8px 20px !important;
+                width: calc(100% - 16px) !important;
+            }
+            
+            /* 导航列表调整 */
+            #nav-list {
+                padding: 0 8px !important;
+                width: calc(100% - 16px) !important;
+            }
+            
+            /* 网站卡片调整 */
+            .xe-widget {
+                margin-bottom: 16px !important;
+            }
+            
+            /* 移动端顶部导航栏 */
+            .mobile-top-nav {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 60px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+                z-index: 1000 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                padding: 0 16px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+            }
+            
+            /* 左侧logo区域 */
+            .mobile-logo {
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+                text-decoration: none !important;
+                color: #333 !important;
+                font-weight: 600 !important;
+                font-size: 16px !important;
+                letter-spacing: 1px !important;
+            }
+            
+            .mobile-logo img {
+                width: 24px !important;
+                height: 24px !important;
+                object-fit: contain !important;
+            }
+            
+            /* 移动端顶部导航栏 */
+            .mobile-top-nav {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 60px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+                z-index: 1000 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                padding: 0 16px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+            }
+            
+            /* 左侧logo区域 */
+            .mobile-logo {
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+                text-decoration: none !important;
+                color: #333 !important;
+                font-weight: 600 !important;
+                font-size: 16px !important;
+                letter-spacing: 1px !important;
+            }
+            
+            .mobile-logo img {
+                width: 24px !important;
+                height: 24px !important;
+                object-fit: contain !important;
+            }
+            
+            /* 右上角功能按钮调整 */
+            .top-function-area {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                gap: 8px !important;
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+            
+            .top-function-button {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+                min-width: 60px !important;
+                border-radius: 16px !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                transition: all 0.3s ease !important;
+                white-space: nowrap !important;
+                letter-spacing: 0.3px !important;
+            }
+            
+            /* 主内容区域顶部留空 */
+            .main-content {
+                padding-top: 80px !important;
+            }
+        }
+        
+        /* 小屏幕进一步优化 */
+        @media (max-width: 480px) {
+            .stats-title {
+                font-size: 20px !important;
+                letter-spacing: 1px !important;
+            }
+            
+            .top-function-area {
+                flex-direction: column !important;
+                gap: 8px !important;
+                align-items: flex-end !important;
+            }
+            
+            .top-function-button {
+                padding: 6px 10px !important;
+                font-size: 12px !important;
+                min-width: 60px !important;
+            }
+        }
     </style>
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/art-template.js"></script>
+    <script src="assets/js/mobile-optimizer.js"></script>
+    <script src="assets/js/performance-monitor.js"></script>
+    <script src="assets/js/back-to-top-enhanced.js"></script>
     <script src="assets/js/source.js"></script>
     <script async src="https://hm.baidu.com/hm.js?193b12c1d2e86b55378df6ab2b47e6d5"></script>
 
@@ -502,7 +734,35 @@
         pointer-events: none;
         min-height: 100vh;
     "></div>
+    <!-- 移动端顶部导航栏 - 只在移动端显示 -->
+    <div class="mobile-top-nav" style="display: none;">
+        <a href="index.html" class="mobile-logo">
+            <img src="assets/images/favicon1 (1).png" alt="懂导航">
+            懂导航
+        </a>
+        <div class="mobile-top-buttons">
+            <div class="mobile-top-button contact-style" id="mobile-contact-btn">
+                与我联系
+            </div>
+            <a href="https://wj.qq.com/s2/17304152/bbfb/" target="_blank" class="mobile-top-button submit-style">
+                网站提交
+            </a>
+        </div>
+    </div>
+
     <div class="page-container">
+        <!-- 汉堡菜单按钮 -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="打开导航菜单">
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        
+        <!-- 移动端遮罩层 -->
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+        
         <div class="sidebar-menu toggle-others fixed">
             <div class="sidebar-menu-inner">
                 <!-- 简化的logo区域 -->
@@ -510,7 +770,7 @@
                     background: #f3f3f3 !important;
                     background-color: #f3f3f3 !important;
                     border: none !important;
-                    padding: 20px 0 20px 40px !important;
+                    padding: 15px 0 15px 40px !important;
                     margin: 0 !important;
                     text-align: left !important;
                 ">
@@ -554,9 +814,8 @@
             <!-- 导航栏 -->
 
             <!-- 直达顶部 -->
-            <a href="javascript:void(0);" id="back-to-top"
-                style="position: fixed; bottom: 30px; right: 30px; z-index: 99;padding:10px;background-color: #fff;border-radius: 50%;">
-                <img src="assets/images/top.svg" alt="跳转图标" style="width: 30px; height: 30px;">
+            <a href="javascript:void(0);" id="back-to-top" aria-label="返回顶部">
+                <img src="assets/images/arrow-up.svg" alt="返回顶部" loading="lazy">
             </a>
             <!-- 首页 -->
             <div class="main-container">
@@ -596,8 +855,8 @@
                         <div class="announcement-message" id="announcementMessage" style="
                             position: relative;
                             padding: 14px 45px 14px 18px;
-                            background: rgba(59, 130, 246, 0.15);
-                            border: 1px solid rgba(59, 130, 246, 0.2);
+                            background: rgba(59, 130, 246, 0.08);
+                            border: 1px solid rgba(59, 130, 246, 0.15);
                             border-radius: 10px;
                             color: #1f2329;
                             text-align: center;
@@ -666,23 +925,318 @@
 
 
 
+                <!-- 加载指示器 -->
+                <div id="loading-indicator" style="
+                    text-align: center;
+                    padding: 60px 0;
+                    color: #64748b;
+                    font-size: 16px;
+                    font-weight: 500;
+                ">
+                    <div style="
+                        display: inline-block;
+                        width: 40px;
+                        height: 40px;
+                        border: 3px solid rgba(59, 130, 246, 0.2);
+                        border-top: 3px solid #3b82f6;
+                        border-radius: 50%;
+                        animation: spin 1s linear infinite;
+                        margin-bottom: 15px;
+                    "></div>
+                    <div>正在加载网站数据...</div>
+                </div>
+
                 <!-- 列表 -->
                 <div id="nav-list"></div>
                 <!-- 底部 -->
-                <div style="background-color: #fff;letter-spacing: 1px;padding: 10px 10px  3px 10px;border-radius: 10px;margin-top:3px;  box-shadow: 
-        0 1px 2px rgba(0, 0, 0, 0.04),
-        0 2px 4px rgba(0, 0, 0, 0.08);">
-                    <p>© 2022 - 2025 By
-                        <a style="text-decoration: none;color:#999fa7;" href="https://github.com/WebStackPage"
-                            target="_blank">WebStack-Hugo</a> |
-                        <a style="text-decoration: none;color:#999fa7;" href="https://github.com/danbaixi/zhanku"
-                            target="_blank">zhanku</a> |
-                        <a style="text-decoration: none;color:#6772e5;" href=""
-                            onclick="localStorage.clear(); location.reload();">清空最近使用</a>
+                <div class="footer-container xe-widget" id="footer-container" style="
+                    display: none;
+                    border-radius: 20px;
+                    margin: 25px 0 20px 0;
+                    padding: 20px 30px;
+                    position: relative;
+                    overflow: hidden;
+                ">
+                    <!-- 多层装饰性背景元素 -->
+                    <div style="
+                        position: absolute;
+                        top: -60%;
+                        right: -25%;
+                        width: 280px;
+                        height: 280px;
+                        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(147, 197, 253, 0.04));
+                        border-radius: 50%;
+                        pointer-events: none;
+                        animation: backgroundFloat 8s ease-in-out infinite;
+                    "></div>
 
-                    </p>
-                    <p>本站内容源于互联网转载或网友投稿，仅供学习用。如有侵犯您的权益，请联系QQ：3197237971删除。</p>
+                    <div style="
+                        position: absolute;
+                        bottom: -40%;
+                        left: -15%;
+                        width: 200px;
+                        height: 200px;
+                        background: linear-gradient(45deg, rgba(139, 92, 246, 0.06), rgba(168, 85, 247, 0.03));
+                        border-radius: 50%;
+                        pointer-events: none;
+                        animation: backgroundFloat 10s ease-in-out infinite reverse;
+                    "></div>
 
+                    <!-- 动态网站统计信息 -->
+                    <div style="
+                        text-align: center;
+                        margin-bottom: 12px;
+                        position: relative;
+                        z-index: 3;
+                    ">
+                        <div style="
+                            display: inline-flex;
+                            gap: 20px;
+                            align-items: center;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                            margin-bottom: 8px;
+                        ">
+                            <div style="
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                gap: 3px;
+                            ">
+                                <span id="total-sites" style="
+                                    font-size: 22px;
+                                    font-weight: 700;
+                                    color: #3b82f6;
+                                    text-shadow: 0 1px 2px rgba(59, 130, 246, 0.2);
+                                ">0</span>
+                                <span style="
+                                    font-size: 11px;
+                                    color: #64748b;
+                                    font-weight: 500;
+                                    letter-spacing: 0.3px;
+                                ">收录网站</span>
+                            </div>
+
+                            <div style="
+                                width: 1px;
+                                height: 30px;
+                                background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, 0.3), transparent);
+                            "></div>
+
+                            <div style="
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                gap: 3px;
+                            ">
+                                <span id="total-categories" style="
+                                    font-size: 22px;
+                                    font-weight: 700;
+                                    color: #8b5cf6;
+                                    text-shadow: 0 1px 2px rgba(139, 92, 246, 0.2);
+                                ">0</span>
+                                <span style="
+                                    font-size: 11px;
+                                    color: #64748b;
+                                    font-weight: 500;
+                                    letter-spacing: 0.3px;
+                                ">分类导航</span>
+                            </div>
+
+                            <div style="
+                                width: 1px;
+                                height: 30px;
+                                background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, 0.3), transparent);
+                            "></div>
+
+                            <div style="
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                gap: 3px;
+                            ">
+                                <span id="runtime-days" style="
+                                    font-size: 22px;
+                                    font-weight: 700;
+                                    color: #06b6d4;
+                                    text-shadow: 0 1px 2px rgba(6, 182, 212, 0.2);
+                                ">0</span>
+                                <span style="
+                                    font-size: 11px;
+                                    color: #64748b;
+                                    font-weight: 500;
+                                    letter-spacing: 0.3px;
+                                ">运行天数</span>
+                            </div>
+                        </div>
+
+                        <!-- 搭建时间 -->
+                        <p style="
+                            margin: 0 0 8px 0;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            font-weight: 400;
+                            letter-spacing: 0.2px;
+                        ">
+                            <i class="fa fa-calendar" style="margin-right: 4px; color: #8b5cf6; font-size: 10px;"></i>
+                            网站搭建于 2022年1月 · 持续更新中
+                        </p>
+                    </div>
+
+                    <!-- 版权信息 -->
+                    <div style="
+                        text-align: center;
+                        margin-bottom: 20px;
+                        position: relative;
+                        z-index: 3;
+                    ">
+                        <p style="
+                            margin: 0 0 12px 0;
+                            font-size: 15px;
+                            color: #475569;
+                            font-weight: 500;
+                            letter-spacing: 0.5px;
+                            line-height: 1.7;
+                        ">
+                            © 2022 - 2025 By
+                            <a style="
+                                text-decoration: none;
+                                color: #3b82f6;
+                                font-weight: 600;
+                                transition: all 0.3s ease;
+                                border-bottom: 2px solid transparent;
+                                padding: 2px 4px;
+                                border-radius: 4px;
+                            " href="https://github.com/WebStackPage" target="_blank"
+                                onmouseover="this.style.color='#2563eb'; this.style.borderBottomColor='#2563eb'; this.style.background='rgba(59, 130, 246, 0.05)';"
+                                onmouseout="this.style.color='#3b82f6'; this.style.borderBottomColor='transparent'; this.style.background='transparent';">
+                                WebStack-Hugo
+                            </a> |
+                            <a style="
+                                text-decoration: none;
+                                color: #3b82f6;
+                                font-weight: 600;
+                                transition: all 0.3s ease;
+                                border-bottom: 2px solid transparent;
+                                padding: 2px 4px;
+                                border-radius: 4px;
+                            " href="https://github.com/danbaixi/zhanku" target="_blank"
+                                onmouseover="this.style.color='#2563eb'; this.style.borderBottomColor='#2563eb'; this.style.background='rgba(59, 130, 246, 0.05)';"
+                                onmouseout="this.style.color='#3b82f6'; this.style.borderBottomColor='transparent'; this.style.background='transparent';">
+                                zhanku
+                            </a>
+                        </p>
+
+                        <div style="
+                            display: inline-flex;
+                            gap: 15px;
+                            align-items: center;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        ">
+                            <!-- 清空最近使用按钮 -->
+                            <div style="
+                                text-decoration: none;
+                                color: #3b82f6;
+                                font-weight: 600;
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(59, 130, 246, 0.3);
+                                padding: 12px 24px;
+                                border-radius: 25px;
+                                font-size: 14px;
+                                background: rgba(173, 216, 230, 0.2);
+                                cursor: pointer;
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 8px;
+                                min-width: 140px;
+                                justify-content: center;
+                            " onclick="localStorage.clear(); location.reload();"
+                                onmouseover="this.style.color='#2563eb'; this.style.borderColor='rgba(59, 130, 246, 0.5)'; this.style.background='rgba(173, 216, 230, 0.3)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59, 130, 246, 0.2)';"
+                                onmouseout="this.style.color='#3b82f6'; this.style.borderColor='rgba(59, 130, 246, 0.3)'; this.style.background='rgba(173, 216, 230, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                🔄
+                                清空最近使用
+                            </div>
+
+                            <!-- 与我联系按钮 -->
+                            <div style="
+                                text-decoration: none;
+                                color: #f97316;
+                                font-weight: 600;
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(249, 115, 22, 0.3);
+                                padding: 12px 24px;
+                                border-radius: 25px;
+                                font-size: 14px;
+                                background: rgba(255, 182, 193, 0.2);
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 8px;
+                                cursor: pointer;
+                                min-width: 140px;
+                                justify-content: center;
+                            " id="contact-btn-footer"
+                                onmouseover="this.style.color='#ea580c'; this.style.borderColor='rgba(249, 115, 22, 0.5)'; this.style.background='rgba(255, 182, 193, 0.3)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(249, 115, 22, 0.2)';"
+                                onmouseout="this.style.color='#f97316'; this.style.borderColor='rgba(249, 115, 22, 0.3)'; this.style.background='rgba(255, 182, 193, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                📧
+                                与我联系
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 免责声明 -->
+                    <div style="
+                        text-align: center;
+                        padding-top: 0px;
+                        border-top: 1px solid rgba(148, 163, 184, 0.15);
+                        position: relative;
+                        z-index: 3;
+                    ">
+                        <p style="
+                            margin: 0;
+                            font-size: 13px;
+                            color: #94a3b8;
+                            line-height: 1.7;
+                            letter-spacing: 0.3px;
+                            max-width: 600px;
+                            margin: 0 auto;
+                        ">
+                            本站内容源于互联网转载或网友投稿，仅供学习交流使用。如有侵犯您的权益，请通过邮箱
+                            <strong style="color: #64748b;">3197237971@qq.com</strong> 联系我们删除。
+                        </p>
+                    </div>
+
+                    <!-- 彩虹装饰线 -->
+                    <div style="
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 4px;
+                        background: linear-gradient(90deg, 
+                            #3b82f6 0%, 
+                            #8b5cf6 25%, 
+                            #06b6d4 50%, 
+                            #10b981 75%, 
+                            #f59e0b 100%);
+                        border-radius: 0 0 20px 20px;
+                        opacity: 0.8;
+                    "></div>
+
+                    <!-- 闪烁效果 -->
+                    <div style="
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 4px;
+                        background: linear-gradient(90deg, 
+                            transparent 0%, 
+                            rgba(255, 255, 255, 0.6) 50%, 
+                            transparent 100%);
+                        border-radius: 0 0 20px 20px;
+                        animation: shimmer 3s ease-in-out infinite;
+                    "></div>
                 </div>
 
 
@@ -871,6 +1425,49 @@
     });
 
     var navTotal = 0 //网站总数
+
+    // 更新页脚统计数据
+    function updateFooterStats() {
+        console.log('更新页脚统计数据，navTotal:', navTotal);
+
+        // 计算分类数量
+        let totalCategories = 0;
+        if (typeof navData !== 'undefined' && navData.list) {
+            navData.list.forEach(category => {
+                if (category.title !== '最近使用') {
+                    totalCategories++;
+                    if (category.child) {
+                        totalCategories += category.child.length;
+                    }
+                }
+            });
+        }
+
+        // 计算运行天数
+        const startDate = new Date('2022-01-01');
+        const currentDate = new Date();
+        const timeDiff = currentDate - startDate;
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+        // 更新显示
+        const totalSitesElement = document.getElementById('total-sites');
+        const totalCategoriesElement = document.getElementById('total-categories');
+        const runtimeElement = document.getElementById('runtime-days');
+
+        if (totalSitesElement) {
+            totalSitesElement.textContent = navTotal;
+            console.log('已更新网站数显示:', navTotal);
+        }
+        if (totalCategoriesElement) {
+            totalCategoriesElement.textContent = totalCategories;
+            console.log('已更新分类数显示:', totalCategories);
+        }
+        if (runtimeElement) {
+            runtimeElement.textContent = daysDiff;
+            console.log('已更新运行天数显示:', daysDiff);
+        }
+    }
+
     // 模板渲染
     function render() {
         //注册过滤器，获取标题首个字符，没有logo则显示
@@ -911,6 +1508,13 @@
             menuContent.innerHTML = category
             navList.innerHTML = list
             $(".nav-total").html(navTotal)
+
+            // 更新页脚统计数据
+            updateFooterStats()
+
+            // 隐藏加载指示器并显示底部容器
+            document.getElementById('loading-indicator').style.display = 'none';
+            document.getElementById('footer-container').style.display = 'block';
 
             // 智能加载策略：根据网站数量决定加载方式
             if (navTotal <= 200) {
@@ -1068,6 +1672,11 @@
 <script>
     // 右上角联系按钮事件
     document.getElementById('contact-btn-top').addEventListener('click', function () {
+        document.getElementById('contactModal').style.display = 'flex';
+    });
+
+    // 页脚联系按钮事件 - 和右上角功能一样
+    document.getElementById('contact-btn-footer').addEventListener('click', function () {
         document.getElementById('contactModal').style.display = 'flex';
     });
 
