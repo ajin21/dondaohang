@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m http.server:*)",
+      "Bash(timeout /t)",
+      "Bash(curl:*)",
+      "Bash(dir:*)",
+      "Bash(ping:*)",
+      "Bash(timeout:*)",
+      "Bash(node:*)",
+      "Bash(wc:*)"
+    ]
+  }
+}

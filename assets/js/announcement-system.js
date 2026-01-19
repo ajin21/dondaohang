@@ -27,8 +27,8 @@ class AnnouncementSystem {
         // 🎯 公告内容配置区域 - 可直接修改以下内容
         // ========================================
         this.announcements = [
-            '有好的网站推荐？<a href="https://wj.qq.com/s2/17304152/bbfb/" target="_blank" style="color: #1e40af; text-decoration: none; font-weight: 500;">点击提交网站</a> 告诉我们 📝',
-            '感谢使用懂导航，如有建议请联系我们 💝'
+            '有好的网站推荐？<a href="https://wj.qq.com/s2/17304152/bbfb/" target="_blank">点击提交网站</a> 告诉我们 📝',
+            
         ];
         // ========================================
         // 🎯 公告内容配置区域结束

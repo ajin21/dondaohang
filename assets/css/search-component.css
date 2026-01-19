@@ -66,12 +66,12 @@
     flex: 1;
     border: none;
     outline: none;
-    padding: 16px 8px;
+    padding: 14px 8px;
     font-size: 15px;
     font-weight: 400;
     color: #333;
     background: transparent;
-    line-height: 1.5;
+    line-height: 1.4;
     letter-spacing: 0.3px;
 }
 

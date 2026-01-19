@@ -1,0 +1,63 @@
+{
+    "announcements": [
+        {
+            "text": "按 <kbd style=\"background:#e2e8f0;color:#334155;padding:2px 6px;border-radius:4px;font-size:12px;\">Ctrl+D</kbd> 收藏本站，随时访问精选资源",
+            "enabled": true
+        },
+        {
+            "text": "欢迎 <a href=\"mailto:3197237971@qq.com\" style=\"color:#3b82f6;font-weight:600;\">投稿</a> 优质网站，共建导航资源库",
+            "enabled": true
+        }
+    ],
+    "ads": [
+        {
+            "icon": "📱",
+            "text": "29元100G流量卡",
+            "url": "https://example.com/liuliang",
+            "color": "59, 130, 246",
+            "enabled": true
+        },
+        {
+            "icon": "🍜",
+            "text": "外卖红包天天领",
+            "url": "https://example.com/waimai",
+            "color": "249, 115, 22",
+            "enabled": true
+        },
+        {
+            "icon": "🚗",
+            "text": "打车立减优惠",
+            "url": "https://example.com/dache",
+            "color": "16, 185, 129",
+            "enabled": true
+        },
+        {
+            "icon": "🤖",
+            "text": "AI工具合集",
+            "url": "https://example.com/ai",
+            "color": "139, 92, 246",
+            "enabled": true
+        },
+        {
+            "icon": "👥",
+            "text": "加入资源社群",
+            "url": "https://example.com/shequn",
+            "color": "236, 72, 153",
+            "enabled": false
+        },
+        {
+            "icon": "💰",
+            "text": "副业赚钱教程",
+            "url": "https://example.com/wangzhuan",
+            "color": "234, 179, 8",
+            "enabled": false
+        },
+        {
+            "icon": "👟",
+            "text": "精品球鞋推荐",
+            "url": "https://example.com/shoes",
+            "color": "99, 102, 241",
+            "enabled": false
+        }
+    ]
+}

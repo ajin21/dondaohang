@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const sidebar = document.querySelector('.sidebar-menu .menu-content1');
         
         if (!sidebarLinks.length || !contentSections.length || !sidebar) {
-            console.log('滚动同步初始化失败：找不到必要元素');
             return;
         }
         

@@ -1,288 +1,349 @@
-// 性能监控面板
+/**
+ * 性能监控器
+ * Performance Monitor
+ * 
+ * 监控一键上滑按钮和其他动效的性能表现
+ */
+
 class PerformanceMonitor {
     constructor() {
-        this.isVisible = false;
-        this.createPanel();
-        this.bindEvents();
+        this.metrics = {
+            scrollEvents: 0,
+            animationFrames: 0,
+            lastScrollTime: 0,
+            averageScrollDelay: 0,
+            memoryUsage: 0,
+            fps: 0
+        };
+        
+        this.isMonitoring = false;
+        this.fpsCounter = 0;
+        this.lastFpsTime = performance.now();
+        
+        this.init();
     }
     
-    createPanel() {
-        const panel = document.createElement('div');
-        panel.id = 'performance-monitor';
-        panel.innerHTML = `
-            <div class="monitor-header">
-                <h3>图标加载性能监控</h3>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="monitor-content">
-                <div class="stats-section">
-                    <h4>API性能统计</h4>
-                    <div id="api-stats"></div>
-                </div>
-                <div class="cache-section">
-                    <h4>缓存统计</h4>
-                    <div id="cache-stats"></div>
-                </div>
-                <div class="actions-section">
-                    <button id="clear-cache">清理缓存</button>
-                    <button id="refresh-stats">刷新统计</button>
-                </div>
-            </div>
-        `;
+    init() {
+        if (window.location.search.includes('debug=performance')) {
+            this.startMonitoring();
+        }
         
-        // 添加样式
-        const style = document.createElement('style');
-        style.textContent = `
-            #performance-monitor {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                width: 350px;
-                background: #fff;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 10000;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                display: none;
-            }
-            
-            .monitor-header {
-                padding: 12px 16px;
-                background: #f8f9fa;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border-radius: 8px 8px 0 0;
-            }
-            
-            .monitor-header h3 {
-                margin: 0;
-                font-size: 14px;
-                font-weight: 600;
-                color: #333;
-            }
-            
-            .close-btn {
-                background: none;
-                border: none;
-                font-size: 18px;
-                cursor: pointer;
-                color: #666;
-                padding: 0;
-                width: 24px;
-                height: 24px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .monitor-content {
-                padding: 16px;
-                max-height: 400px;
-                overflow-y: auto;
-            }
-            
-            .stats-section, .cache-section {
-                margin-bottom: 16px;
-            }
-            
-            .stats-section h4, .cache-section h4 {
-                margin: 0 0 8px 0;
-                font-size: 12px;
-                font-weight: 600;
-                color: #666;
-                text-transform: uppercase;
-            }
-            
-            .api-item {
-                background: #f8f9fa;
-                padding: 8px 12px;
-                margin-bottom: 6px;
-                border-radius: 4px;
-                font-size: 12px;
-            }
-            
-            .api-name {
-                font-weight: 600;
-                color: #333;
-            }
-            
-            .api-metrics {
-                color: #666;
-                margin-top: 4px;
-            }
-            
-            .actions-section {
-                display: flex;
-                gap: 8px;
-            }
-            
-            .actions-section button {
-                flex: 1;
-                padding: 8px 12px;
-                border: 1px solid #ddd;
-                background: #fff;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 12px;
-                transition: background-color 0.2s;
-            }
-            
-            .actions-section button:hover {
-                background: #f8f9fa;
-            }
-            
-            .cache-info {
-                background: #f8f9fa;
-                padding: 8px 12px;
-                border-radius: 4px;
-                font-size: 12px;
-                color: #666;
-            }
-        `;
-        
-        document.head.appendChild(style);
-        document.body.appendChild(panel);
-        this.panel = panel;
+        this.setupPerformanceOptimizations();
     }
     
-    bindEvents() {
-        // 关闭按钮
-        this.panel.querySelector('.close-btn').addEventListener('click', () => {
-            this.hide();
-        });
+    // 开始性能监控
+    startMonitoring() {
+        this.isMonitoring = true;
         
-        // 清理缓存
-        this.panel.querySelector('#clear-cache').addEventListener('click', () => {
-            this.clearCache();
-        });
+        // 监控滚动性能
+        this.monitorScrollPerformance();
         
-        // 刷新统计
-        this.panel.querySelector('#refresh-stats').addEventListener('click', () => {
-            this.updateStats();
-        });
+        // 监控FPS
+        this.monitorFPS();
         
-        // 键盘快捷键 Ctrl+Shift+P 打开面板
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'P') {
-                e.preventDefault();
-                this.toggle();
+        // 监控内存使用
+        this.monitorMemoryUsage();
+        
+        // 定期输出报告
+        setInterval(() => {
+            this.generateReport();
+        }, 5000);
+        
+        console.log('🚀 Performance Monitor started');
+    }
+    
+    // 监控滚动性能
+    monitorScrollPerformance() {
+        let scrollStartTime = 0;
+        
+        window.addEventListener('scroll', () => {
+            const now = performance.now();
+            
+            if (scrollStartTime === 0) {
+                scrollStartTime = now;
             }
-        });
+            
+            this.metrics.scrollEvents++;
+            this.metrics.lastScrollTime = now;
+            
+            // 计算平均滚动延迟
+            const delay = now - scrollStartTime;
+            this.metrics.averageScrollDelay = 
+                (this.metrics.averageScrollDelay + delay) / 2;
+            
+            scrollStartTime = now;
+        }, { passive: true });
     }
     
-    show() {
-        this.panel.style.display = 'block';
-        this.isVisible = true;
-        this.updateStats();
+    // 监控FPS
+    monitorFPS() {
+        const measureFPS = (timestamp) => {
+            this.fpsCounter++;
+            
+            if (timestamp - this.lastFpsTime >= 1000) {
+                this.metrics.fps = Math.round(
+                    (this.fpsCounter * 1000) / (timestamp - this.lastFpsTime)
+                );
+                this.fpsCounter = 0;
+                this.lastFpsTime = timestamp;
+            }
+            
+            if (this.isMonitoring) {
+                requestAnimationFrame(measureFPS);
+            }
+        };
+        
+        requestAnimationFrame(measureFPS);
     }
     
-    hide() {
-        this.panel.style.display = 'none';
-        this.isVisible = false;
-    }
-    
-    toggle() {
-        if (this.isVisible) {
-            this.hide();
-        } else {
-            this.show();
+    // 监控内存使用
+    monitorMemoryUsage() {
+        if (performance.memory) {
+            setInterval(() => {
+                this.metrics.memoryUsage = {
+                    used: Math.round(performance.memory.usedJSHeapSize / 1048576),
+                    total: Math.round(performance.memory.totalJSHeapSize / 1048576),
+                    limit: Math.round(performance.memory.jsHeapSizeLimit / 1048576)
+                };
+            }, 2000);
         }
     }
     
-    updateStats() {
-        this.updateAPIStats();
-        this.updateCacheStats();
+    // 生成性能报告
+    generateReport() {
+        const report = {
+            timestamp: new Date().toLocaleTimeString(),
+            fps: this.metrics.fps,
+            scrollEvents: this.metrics.scrollEvents,
+            averageScrollDelay: Math.round(this.metrics.averageScrollDelay * 100) / 100,
+            memoryUsage: this.metrics.memoryUsage,
+            backToTopStatus: window.EnhancedBackToTop ? 
+                window.EnhancedBackToTop.getStatus() : 'Not initialized'
+        };
+        
+        console.group('📊 Performance Report');
+        console.table(report);
+        console.groupEnd();
+        
+        // 性能警告
+        if (this.metrics.fps < 30) {
+            console.warn('⚠️ Low FPS detected:', this.metrics.fps);
+        }
+        
+        if (this.metrics.averageScrollDelay > 16.67) {
+            console.warn('⚠️ High scroll delay detected:', this.metrics.averageScrollDelay + 'ms');
+        }
     }
     
-    updateAPIStats() {
-        const apiStatsContainer = this.panel.querySelector('#api-stats');
+    // 设置性能优化
+    setupPerformanceOptimizations() {
+        // 优化滚动事件
+        this.optimizeScrollEvents();
         
-        if (window.IconAPIManager) {
-            const stats = window.IconAPIManager.getStats();
-            
-            if (Object.keys(stats).length === 0) {
-                apiStatsContainer.innerHTML = '<div class="api-item">暂无API使用统计</div>';
-                return;
-            }
-            
-            let html = '';
-            Object.entries(stats).forEach(([apiName, data]) => {
-                const successRate = (data.successRate * 100).toFixed(1);
-                const avgTime = data.avgResponseTime.toFixed(0);
-                
-                html += `
-                    <div class="api-item">
-                        <div class="api-name">${apiName}</div>
-                        <div class="api-metrics">
-                            成功率: ${successRate}% | 
-                            平均响应: ${avgTime}ms | 
-                            总请求: ${data.totalCount}
-                        </div>
-                    </div>
-                `;
+        // 优化动画
+        this.optimizeAnimations();
+        
+        // 优化内存
+        this.optimizeMemory();
+        
+        // 预加载关键资源
+        this.preloadCriticalResources();
+    }
+    
+    // 优化滚动事件
+    optimizeScrollEvents() {
+        // 使用 Intersection Observer 优化可见性检测
+        if ('IntersectionObserver' in window) {
+            const backToTopObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target.id === 'back-to-top') {
+                        // 当按钮进入视口时进行优化
+                        if (entry.isIntersecting) {
+                            entry.target.style.willChange = 'transform, opacity';
+                        } else {
+                            entry.target.style.willChange = 'auto';
+                        }
+                    }
+                });
+            }, {
+                threshold: [0, 1]
             });
             
-            apiStatsContainer.innerHTML = html;
-        } else {
-            apiStatsContainer.innerHTML = '<div class="api-item">API管理器未加载</div>';
-        }
-    }
-    
-    updateCacheStats() {
-        const cacheStatsContainer = this.panel.querySelector('#cache-stats');
-        
-        try {
-            const keys = Object.keys(localStorage);
-            const cacheKeys = keys.filter(key => key.startsWith('icon_cache_'));
-            const cacheSize = cacheKeys.reduce((size, key) => {
-                return size + localStorage.getItem(key).length;
-            }, 0);
-            
-            const cacheSizeKB = (cacheSize / 1024).toFixed(1);
-            
-            cacheStatsContainer.innerHTML = `
-                <div class="cache-info">
-                    缓存图标数量: ${cacheKeys.length}<br>
-                    缓存大小: ${cacheSizeKB} KB<br>
-                    存储使用率: ${((cacheSize / (5 * 1024 * 1024)) * 100).toFixed(1)}%
-                </div>
-            `;
-        } catch (e) {
-            cacheStatsContainer.innerHTML = '<div class="cache-info">无法获取缓存统计</div>';
-        }
-    }
-    
-    clearCache() {
-        try {
-            const keys = Object.keys(localStorage);
-            keys.forEach(key => {
-                if (key.startsWith('icon_cache_')) {
-                    localStorage.removeItem(key);
+            // 延迟观察，等待按钮创建
+            setTimeout(() => {
+                const backToTop = document.getElementById('back-to-top');
+                if (backToTop) {
+                    backToTopObserver.observe(backToTop);
                 }
-            });
-            
-            // 也清理API统计
-            localStorage.removeItem('icon_api_stats');
-            
-            alert('缓存已清理');
-            this.updateStats();
-        } catch (e) {
-            alert('清理缓存失败: ' + e.message);
+            }, 1000);
         }
+    }
+    
+    // 优化动画
+    optimizeAnimations() {
+        // 检测设备性能
+        const isLowEndDevice = this.detectLowEndDevice();
+        
+        if (isLowEndDevice) {
+            document.body.classList.add('low-performance-mode');
+            
+            // 添加低性能模式样式
+            const lowPerfStyles = document.createElement('style');
+            lowPerfStyles.textContent = `
+                .low-performance-mode #back-to-top {
+                    transition: opacity 0.2s ease !important;
+                }
+                
+                .low-performance-mode #back-to-top::before,
+                .low-performance-mode #back-to-top::after {
+                    display: none !important;
+                }
+                
+                .low-performance-mode .progress-ring-circle {
+                    transition: none !important;
+                }
+                
+                .low-performance-mode .ripple-effect {
+                    display: none !important;
+                }
+            `;
+            document.head.appendChild(lowPerfStyles);
+        }
+    }
+    
+    // 检测低端设备
+    detectLowEndDevice() {
+        // 检测硬件并发数
+        const cores = navigator.hardwareConcurrency || 2;
+        
+        // 检测内存
+        const memory = navigator.deviceMemory || 2;
+        
+        // 检测连接类型
+        const connection = navigator.connection;
+        const isSlowConnection = connection && 
+            (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+        
+        return cores <= 2 || memory <= 2 || isSlowConnection;
+    }
+    
+    // 优化内存
+    optimizeMemory() {
+        // 定期清理未使用的事件监听器
+        setInterval(() => {
+            this.cleanupEventListeners();
+        }, 30000);
+        
+        // 页面隐藏时暂停动画
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseAnimations();
+            } else {
+                this.resumeAnimations();
+            }
+        });
+    }
+    
+    // 清理事件监听器
+    cleanupEventListeners() {
+        // 移除不活跃的监听器
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop && !backToTop.classList.contains('show')) {
+            // 如果按钮长时间不显示，可以考虑临时移除某些监听器
+        }
+    }
+    
+    // 暂停动画
+    pauseAnimations() {
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            backToTop.style.animationPlayState = 'paused';
+        }
+    }
+    
+    // 恢复动画
+    resumeAnimations() {
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            backToTop.style.animationPlayState = 'running';
+        }
+    }
+    
+    // 预加载关键资源
+    preloadCriticalResources() {
+        // 预连接字体资源
+        const fontPreconnect = document.createElement('link');
+        fontPreconnect.rel = 'preconnect';
+        fontPreconnect.href = 'https://fonts.gstatic.com';
+        fontPreconnect.crossOrigin = 'anonymous';
+        document.head.appendChild(fontPreconnect);
+    }
+    
+    // 获取性能指标
+    getMetrics() {
+        return {
+            ...this.metrics,
+            timestamp: Date.now(),
+            userAgent: navigator.userAgent,
+            viewport: {
+                width: window.innerWidth,
+                height: window.innerHeight
+            },
+            devicePixelRatio: window.devicePixelRatio || 1
+        };
+    }
+    
+    // 停止监控
+    stopMonitoring() {
+        this.isMonitoring = false;
+        console.log('🛑 Performance Monitor stopped');
+    }
+    
+    // 导出性能数据
+    exportData() {
+        const data = {
+            metrics: this.getMetrics(),
+            timestamp: new Date().toISOString(),
+            url: window.location.href
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], {
+            type: 'application/json'
+        });
+        
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `performance-report-${Date.now()}.json`;
+        a.click();
+        
+        URL.revokeObjectURL(url);
     }
 }
 
-// 初始化性能监控器
+// 创建全局实例
+let performanceMonitor = null;
+
+// 初始化
 document.addEventListener('DOMContentLoaded', () => {
-    window.performanceMonitor = new PerformanceMonitor();
+    try {
+        performanceMonitor = new PerformanceMonitor();
+        
+        // 暴露到全局作用域
+        window.PerformanceMonitor = performanceMonitor;
+        
+        // 添加调试命令
+        if (window.location.search.includes('debug=performance')) {
+            window.exportPerformanceData = () => performanceMonitor.exportData();
+            console.log('💡 Use exportPerformanceData() to export performance data');
+        }
+        
+    } catch (error) {
+        console.warn('PerformanceMonitor initialization failed:', error);
+    }
 });
 
-// 添加控制台命令
-window.showPerformanceMonitor = () => {
-    if (window.performanceMonitor) {
-        window.performanceMonitor.show();
-    }
-};
+// 导出
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = PerformanceMonitor;
+}

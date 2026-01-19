@@ -1,15 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <meta name="author" content="danbaixi" />
-    <title>懂导航 - 做懂你的导航</title>
-    <meta name="keywords" content="网址导航,设计资源,UI设计,网址大全,设计师导航,优秀网站,网站推荐,站库">
-    <meta name="description" content="懂导航 - 打造自媒体网站和工具发现平台">
+    <meta name="author" content="小古" />
+    <title>小古导航 - 打破信息差，精选实用工具与优质网址资源导航</title>
+    <meta name="keywords" content="小古导航,网址导航,资源导航,效率工具,实用网站,办公神器,AI工具">
+    <meta name="description" content="小古导航 - 打破信息差，发现工具新世界。精选全网最实用的办公工具、效率利器、设计素材及AI辅助网站。">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="小古导航 - 打破信息差，发现工具新世界">
+    <meta property="og:description" content="精选全网最实用的办公工具、效率利器、设计素材及AI辅助网站。">
+    <meta property="og:image" content="assets/images/favicon1.png">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="小古导航 - 打破信息差，发现工具新世界">
+    <meta name="twitter:description" content="精选全网最实用的办公工具、效率利器、设计素材及AI辅助网站。">
+    <meta name="twitter:image" content="assets/images/favicon1.png">
+
+    <!-- 其他SEO优化 -->
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#3b82f6">
+
     <link rel="shortcut icon" href="assets/images/favicon1.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon1.png">
     <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/hero-section.css">
     <link rel="stylesheet" href="assets/css/xenon-core.css">
@@ -24,6 +43,121 @@
     <link rel="stylesheet" href="assets/css/mobile-enhancements.css">
     <link rel="stylesheet" href="assets/css/back-to-top.css">
     <style>
+        /* 全局滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.4);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.6);
+        }
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(156, 163, 175, 0.4) transparent;
+        }
+
+        /* 移动端隐藏侧边栏 */
+        @media (max-width: 768px) {
+            .sidebar-menu,
+            .page-sidebar {
+                display: none !important;
+            }
+            .main-content {
+                margin-left: 0 !important;
+                padding: 0 10px !important;
+            }
+            .main-container {
+                padding: 0 !important;
+            }
+            /* 移动端卡片网格 */
+            .row {
+                margin: 0 -5px !important;
+            }
+            .col-sm-3 {
+                width: 50% !important;
+                padding: 5px !important;
+            }
+            .xe-widget {
+                margin-bottom: 0 !important;
+                padding: 12px !important;
+            }
+            .xe-widget .xe-comment-entry {
+                padding: 0 !important;
+            }
+            .xe-widget .xe-user-img {
+                width: 36px !important;
+                height: 36px !important;
+                min-width: 36px !important;
+            }
+            .xe-widget .xe-user-img img,
+            .xe-widget .xe-user-img span {
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 14px !important;
+            }
+            .xe-widget .title {
+                font-size: 13px !important;
+            }
+            .xe-widget .desc {
+                font-size: 11px !important;
+                -webkit-line-clamp: 1 !important;
+            }
+            /* 移动端标题优化 */
+            .nav-item h4.text-gray {
+                font-size: 15px !important;
+                margin: 14px 0 8px 0 !important;
+                padding: 0 5px !important;
+            }
+            /* 移动端顶部区域 */
+            .stats-container {
+                padding: 25px 0 0 !important;
+            }
+            .stats-title {
+                font-size: 20px !important;
+                letter-spacing: 1px !important;
+                margin-top: 15px !important;
+                margin-bottom: 15px !important;
+            }
+            /* 移动端广告栏 */
+            #ad-banner {
+                margin: 12px auto !important;
+                gap: 6px !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+            }
+            #ad-banner a {
+                font-size: 11px !important;
+                padding: 5px 10px !important;
+            }
+            /* 移动端公告 */
+            #announcementMessage {
+                font-size: 12px !important;
+                padding: 10px 32px 10px 12px !important;
+            }
+            /* 移动端搜索框 */
+            .modern-search-container {
+                margin: 15px auto !important;
+                max-width: calc(100% - 20px) !important;
+            }
+            .modern-search-input {
+                padding: 12px 8px !important;
+                font-size: 14px !important;
+            }
+            /* 移动端底部信息框 */
+            .footer-container {
+                margin: 15px 5px !important;
+                padding: 15px !important;
+            }
+        }
+
         /* 公告系统动画效果 */
         @keyframes announcementSlideIn {
             0% {
@@ -68,19 +202,50 @@
             display: block !important;
         }
 
-        /* 公告链接样式 - 飞书风格蓝色 */
+        /* 美化公告栏样式 */
+        #announcementMessage {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(147, 51, 234, 0.06) 100%) !important;
+            border: 1px solid rgba(59, 130, 246, 0.2) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        /* 禁用公告悬停效果 */
+        #announcementMessage:hover,
+        .announcement-message:hover,
+        .announcement-container:hover,
+        .announcement-container *:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .announcement-container,
+        .announcement-message,
+        .announcement-close-btn {
+            transition: none !important;
+        }
+
+        .announcement-close-btn:hover {
+            transform: translateY(-50%) !important;
+            background: transparent !important;
+        }
+
+        /* 公告链接样式 - 更醒目 */
         .announcement-text a {
-            color: #366fff !important;
+            color: #3b82f6 !important;
             text-decoration: none !important;
-            font-weight: 500 !important;
+            font-weight: 600 !important;
             transition: all 0.2s ease !important;
-            border-bottom: none !important;
+            border-bottom: 1px dashed rgba(59, 130, 246, 0.4) !important;
+            padding-bottom: 1px !important;
         }
 
         .announcement-text a:hover {
-            color: #2b5ce6 !important;
-            text-decoration: none !important;
-            transform: translateY(-1px) !important;
+            color: #2563eb !important;
+            border-bottom-color: #2563eb !important;
+            border-bottom-style: solid !important;
         }
 
         /* 背景浮动动画 */
@@ -117,14 +282,28 @@
         .xe-widget {
             background: rgba(255, 255, 255, 0.9) !important;
             backdrop-filter: blur(8px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            transition: all 0.3s ease !important;
+            border: 1px solid rgba(200, 200, 200, 0.3) !important;
+            transition: border-color 0.15s ease !important;
         }
 
         .xe-widget:hover {
             background: rgba(255, 255, 255, 0.95) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+            transform: none !important;
+            box-shadow: none !important;
+            border-color: #3b82f6 !important;
+            transition: border-color 0.15s ease !important;
+        }
+
+        /* 历史记录删除按钮悬停显示 */
+        .xe-widget:hover .delete-history-btn {
+            opacity: 1 !important;
+        }
+
+        /* 底部统计框禁用悬停效果 */
+        .footer-container.xe-widget:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            background: rgba(255, 255, 255, 0.9) !important;
         }
 
         /* 简洁分类标题样式 - 无图标加粗版 */
@@ -183,67 +362,6 @@
             border-color: rgba(37, 99, 235, 0.3) !important;
             transform: none !important;
             box-shadow: none !important;
-        }
-
-        /* 完全融入背景的按钮样式 */
-        .top-function-button {
-            padding: 10px 16px !important;
-            border: none !important;
-            background: transparent !important;
-            border-radius: 0 !important;
-            transition: all 0.2s ease !important;
-            position: relative !important;
-            font-weight: 600 !important;
-            font-size: 14px !important;
-            cursor: pointer !important;
-            text-decoration: none !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            letter-spacing: 0.5px !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-        }
-
-        /* 联系按钮 - 完全透明 */
-        .top-function-button.contact-style {
-            color: #64748b !important;
-            border: 2px solid transparent !important;
-            border-radius: 8px !important;
-            background: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        .top-function-button.contact-style:hover {
-            color: #374151 !important;
-            opacity: 1 !important;
-            border: 2px solid #64748b !important;
-            background: rgba(255, 255, 255, 0.2) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2) !important;
-        }
-
-        /* 提交按钮 - 蓝色文字 */
-        .top-function-button.submit-style {
-            color: #3b82f6 !important;
-            border: 2px solid transparent !important;
-            border-radius: 8px !important;
-            background: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        .top-function-button.submit-style:hover {
-            color: #2563eb !important;
-            opacity: 1 !important;
-            border: 2px solid #3b82f6 !important;
-            background: rgba(255, 255, 255, 0.2) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2) !important;
-        }
-
-        /* 按钮激活状态 */
-        .top-function-button:active {
-            transform: scale(0.95) !important;
-            transition: all 0.1s ease !important;
         }
 
         /* 侧边栏整体背景色和宽度调整 */
@@ -489,14 +607,6 @@
             }
         }
 
-        .footer-container:hover {
-            transform: translateY(-2px) !important;
-            box-shadow:
-                0 12px 40px rgba(0, 0, 0, 0.12),
-                0 4px 12px rgba(0, 0, 0, 0.06),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-        }
-
         /* 加载动画 */
         @keyframes spin {
             0% {
@@ -737,17 +847,9 @@
     <!-- 移动端顶部导航栏 - 只在移动端显示 -->
     <div class="mobile-top-nav" style="display: none;">
         <a href="index.html" class="mobile-logo">
-            <img src="assets/images/favicon1 (1).png" alt="懂导航">
-            懂导航
+            <img src="assets/images/favicon1 (1).png" alt="小古导航">
+            小古导航
         </a>
-        <div class="mobile-top-buttons">
-            <div class="mobile-top-button contact-style" id="mobile-contact-btn">
-                与我联系
-            </div>
-            <a href="https://wj.qq.com/s2/17304152/bbfb/" target="_blank" class="mobile-top-button submit-style">
-                网站提交
-            </a>
-        </div>
     </div>
 
     <div class="page-container">
@@ -770,29 +872,33 @@
                     background: #f3f3f3 !important;
                     background-color: #f3f3f3 !important;
                     border: none !important;
-                    padding: 15px 0 15px 40px !important;
+                    padding: 18px 0 18px 70px !important;
                     margin: 0 !important;
                     text-align: left !important;
+                    display: flex !important;
+                    align-items: center !important;
                 ">
                     <a href="index.html" style="
                         text-decoration: none;
                         color: #333;
-                        font-size: 20px;
+                        font-size: 18px;
                         font-weight: 700;
-                        letter-spacing: 2px;
+                        letter-spacing: 1px;
                         background: transparent;
                         border: none;
                         box-shadow: none;
                         display: flex;
                         align-items: center;
-                        gap: 10px;
+                        gap: 12px;
+                        padding-left: 5px;
                     ">
-                        <img src="assets/images/favicon1 (1).png" alt="懂导航" style="
-                            width: 26px;
-                            height: 26px;
+                        <img src="assets/images/favicon1 (1).png" alt="小古导航" style="
+                            width: 24px;
+                            height: 24px;
                             object-fit: contain;
+                            margin-left: -5px;
                         ">
-                        懂导航
+                        小古导航
                     </a>
                 </div>
 
@@ -819,30 +925,11 @@
             </a>
             <!-- 首页 -->
             <div class="main-container">
-                <!-- 右上角功能按钮 - 可滚动版本 -->
-                <div class="top-function-area" style="
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    display: flex;
-                    gap: 20px;
-                    align-items: center;
-                    z-index: 100;
-                ">
-                    <div class="top-function-button contact-style" id="contact-btn-top">
-                        与我联系
-                    </div>
-                    <a href="https://wj.qq.com/s2/17304152/bbfb/" target="_blank" style="text-decoration: none;">
-                        <div class="top-function-button submit-style">
-                            网站提交
-                        </div>
-                    </a>
-                </div>
 
                 <div class="stats-container" style="background: transparent; padding: 60px 0 0px;">
                     <div class="stats-title"
-                        style="font-size: 32px; letter-spacing: 5px; color: #333; font-weight: 600; margin-top: 40px; margin-bottom: 30px; text-align: center; line-height: 1.4; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);">
-                        打造<span style="color: #3b82f6; font-weight: 700;">自媒体</span>网站和工具发现平台</div>
+                        style="font-size: 32px; letter-spacing: 4px; color: #333; font-weight: 600; margin-top: 40px; margin-bottom: 30px; text-align: center; line-height: 1.4; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);">
+                        打破<span style="color: #3b82f6; font-weight: 700;">信息差</span>，发现工具新世界</div>
 
                     <!-- 飞书风格公告系统 - 居中显示 -->
                     <div class="announcement-container" id="announcementContainer" style="
@@ -864,29 +951,19 @@
                             font-weight: 400;
                             line-height: 1.6;
                             letter-spacing: 1px;
-                            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.12);
-                            animation: announcementSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                             overflow: hidden;
                             width: fit-content;
                             max-width: calc(100% - 40px);
                             margin: 0 auto;
                             display: inline-block;
                         ">
-                            <!-- 飞书风格图标 -->
-                            <i class="fa fa-info-circle" style="
-                                margin-right: 8px; 
-                                color: #3b82f6; 
-                                font-size: 14px;
-                                vertical-align: middle;
-                            "></i>
-
-                            <!-- 飞书风格文本 -->
+                            <!-- 公告文本 -->
                             <span class="announcement-text" style="
                                 color: #1f2329;
                                 vertical-align: middle;
                             ">加载中...</span>
 
-                            <!-- 飞书风格关闭按钮 -->
+                            <!-- 关闭按钮 -->
                             <button class="announcement-close-btn" onclick="closeAnnouncement()" style="
                                 position: absolute;
                                 right: 8px;
@@ -896,17 +973,14 @@
                                 border: none;
                                 color: #8f959e;
                                 cursor: pointer;
-                                font-size: 14px;
+                                font-size: 16px;
                                 width: 20px;
                                 height: 20px;
-                                border-radius: 4px;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                transition: all 0.2s ease;
                                 z-index: 3;
-                            " onmouseover="this.style.background='rgba(31, 35, 41, 0.06)'; this.style.color='#1f2329'"
-                                onmouseout="this.style.background='transparent'; this.style.color='#8f959e'">×</button>
+                            ">×</button>
                         </div>
                     </div>
 
@@ -922,7 +996,16 @@
                 </div>
                 <!-- 搜索 -->
 
-
+                <!-- 精品推荐区 - 从配置文件加载 -->
+                <div id="ad-banner" class="recommend-banner" style="
+                    display: flex;
+                    gap: 10px;
+                    margin: 20px auto;
+                    padding: 0;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    max-width: 650px;
+                "></div>
 
 
                 <!-- 加载指示器 -->
@@ -1124,64 +1207,12 @@
                                 onmouseover="this.style.color='#2563eb'; this.style.borderBottomColor='#2563eb'; this.style.background='rgba(59, 130, 246, 0.05)';"
                                 onmouseout="this.style.color='#3b82f6'; this.style.borderBottomColor='transparent'; this.style.background='transparent';">
                                 zhanku
-                            </a>
-                        </p>
-
-                        <div style="
-                            display: inline-flex;
-                            gap: 15px;
-                            align-items: center;
-                            justify-content: center;
-                            flex-wrap: wrap;
-                        ">
-                            <!-- 清空最近使用按钮 -->
-                            <div style="
-                                text-decoration: none;
+                            </a> | <span style="
                                 color: #3b82f6;
                                 font-weight: 600;
-                                transition: all 0.3s ease;
-                                border: 2px solid rgba(59, 130, 246, 0.3);
-                                padding: 12px 24px;
-                                border-radius: 25px;
-                                font-size: 14px;
-                                background: rgba(173, 216, 230, 0.2);
-                                cursor: pointer;
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 8px;
-                                min-width: 140px;
-                                justify-content: center;
-                            " onclick="localStorage.clear(); location.reload();"
-                                onmouseover="this.style.color='#2563eb'; this.style.borderColor='rgba(59, 130, 246, 0.5)'; this.style.background='rgba(173, 216, 230, 0.3)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59, 130, 246, 0.2)';"
-                                onmouseout="this.style.color='#3b82f6'; this.style.borderColor='rgba(59, 130, 246, 0.3)'; this.style.background='rgba(173, 216, 230, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
-                                🔄
-                                清空最近使用
-                            </div>
-
-                            <!-- 与我联系按钮 -->
-                            <div style="
-                                text-decoration: none;
-                                color: #f97316;
-                                font-weight: 600;
-                                transition: all 0.3s ease;
-                                border: 2px solid rgba(249, 115, 22, 0.3);
-                                padding: 12px 24px;
-                                border-radius: 25px;
-                                font-size: 14px;
-                                background: rgba(255, 182, 193, 0.2);
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 8px;
-                                cursor: pointer;
-                                min-width: 140px;
-                                justify-content: center;
-                            " id="contact-btn-footer"
-                                onmouseover="this.style.color='#ea580c'; this.style.borderColor='rgba(249, 115, 22, 0.5)'; this.style.background='rgba(255, 182, 193, 0.3)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(249, 115, 22, 0.2)';"
-                                onmouseout="this.style.color='#f97316'; this.style.borderColor='rgba(249, 115, 22, 0.3)'; this.style.background='rgba(255, 182, 193, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
-                                📧
-                                与我联系
-                            </div>
-                        </div>
+                                padding: 2px 4px;
+                            ">小古</span>
+                        </p>
                     </div>
 
                     <!-- 免责声明 -->
@@ -1203,6 +1234,14 @@
                         ">
                             本站内容源于互联网转载或网友投稿，仅供学习交流使用。如有侵犯您的权益，请通过邮箱
                             <strong style="color: #64748b;">3197237971@qq.com</strong> 联系我们删除。
+                            <span style="margin-left: 8px; color: #cbd5e1;">|</span>
+                            <a href="javascript:void(0)" onclick="clearSiteCache()" style="
+                                margin-left: 8px;
+                                color: #94a3b8;
+                                text-decoration: none;
+                                font-size: 12px;
+                                transition: color 0.2s ease;
+                            " onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='#94a3b8'">清空缓存</a>
                         </p>
                     </div>
 
@@ -1280,13 +1319,34 @@
 {{each list l}}
     {{if l.nav}}
     <div class="nav-item" id="{{l.title}}">
-        <h4 class="text-gray">{{l.title}} 
+        <h4 class="text-gray">
+            {{l.title}}
             <span class="nav-count">{{ l.nav | getNavLength l.title}}</span>
         </h4>
         <div class="row">
             {{each l.nav n}}
             <div class="col-sm-3 col-lg-2 " >
-                <div class="xe-widget xe-conversations box2 label-info site-box" data-toggle="tooltip" data-placement="bottom" title="{{n.desc}}" data-url="{{n.url}}">
+                <div class="xe-widget xe-conversations box2 label-info site-box" data-toggle="tooltip" data-placement="bottom" title="{{n.desc}}" data-url="{{n.url}}" style="position: relative;">
+                    {{if l.title == '最近使用'}}
+                    <span class="delete-history-btn" data-url="{{n.url}}" onclick="event.stopPropagation(); deleteHistoryItem('{{n.url}}')" style="
+                        position: absolute;
+                        top: 8px;
+                        right: 8px;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 6px;
+                        background: rgba(239, 68, 68, 0.1);
+                        color: #ef4444;
+                        font-size: 16px;
+                        line-height: 24px;
+                        text-align: center;
+                        cursor: pointer;
+                        z-index: 10;
+                        transition: all 0.2s ease;
+                        opacity: 0;
+                        font-weight: 500;
+                    " onmouseover="this.style.background='rgba(239, 68, 68, 0.9)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'; this.style.color='#ef4444'">&times;</span>
+                    {{/if}}
                     <div class="xe-comment-entry ">
                         <a class="xe-user-img" >
                             {{if n.image}}
@@ -1296,7 +1356,7 @@
                             <span style="background:{{n.title | randomColor}}" aria-label="{{n.title}}">{{n.title | titleFirstWord}}</span>
                             {{/if}}
                         </a>
-                        <div class="xe-comment"> 
+                        <div class="xe-comment">
                             <p class="title xe-user-name overflowClip_1" >{{n.title}}</p>
                             <p class="desc overflowClip_2">{{n.desc}}</p>
                         </div>
@@ -1304,7 +1364,7 @@
                 </div>
             </div>
             {{/each}}
-        </div>  
+        </div>
     </div>
     {{/if}}
 
@@ -1348,7 +1408,8 @@
     function updateRecentSitesCount() {
         var history = localStorage.getItem(storageName);
         var count = history ? JSON.parse(history).length : 0;
-        document.getElementById('recent-sites').textContent = count;
+        var el = document.getElementById('recent-sites');
+        if (el) el.textContent = count;
     }
     // 缓存名称
     var storageName = 'zk_history'
@@ -1554,12 +1615,19 @@
             return
         }
         history = JSON.parse(history)
-        // 确保每个历史记录都有image属性
+        // 确保每个历史记录都有image属性和clickCount
         history = history.map(function (item) {
             if (!item.image) {
                 item.image = 'https://favicon.im/' + new URL(item.url).hostname;
             }
+            if (!item.clickCount) {
+                item.clickCount = 1;
+            }
             return item;
+        });
+        // 按点击次数降序排序
+        history.sort(function(a, b) {
+            return (b.clickCount || 1) - (a.clickCount || 1);
         });
         navData.list[0].nav = history
     }
@@ -1579,23 +1647,83 @@
         }
     }
 
-    //历史记录 入栈
+    // 智能更新历史记录（不重新渲染整个列表）
+    function smartUpdateHistory(newItem, isMove) {
+        var $recentSection = $("#最近使用");
+        if ($recentSection.length === 0) {
+            // 如果最近使用区域不存在，完整渲染
+            reloadHistory();
+            return;
+        }
+
+        var $row = $recentSection.find(".row");
+        var existingCard = $row.find('.site-box[data-url="' + newItem.url + '"]').closest('.col-sm-3');
+
+        if (existingCard.length > 0) {
+            // 已存在，移动到最前面
+            existingCard.prependTo($row);
+        } else {
+            // 不存在，创建新卡片并插入到最前面
+            var bgColor = getRandomColor(newItem.title);
+            var cardHtml = '<div class="col-sm-3 col-lg-2">' +
+                '<div class="xe-widget xe-conversations box2 label-info site-box" data-toggle="tooltip" data-placement="bottom" title="' + newItem.desc + '" data-url="' + newItem.url + '" style="position: relative;">' +
+                '<span class="delete-history-btn" data-url="' + newItem.url + '" onclick="event.stopPropagation(); deleteHistoryItem(\'' + newItem.url + '\')" style="position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; background: rgba(239, 68, 68, 0.1); color: #ef4444; font-size: 14px; line-height: 20px; text-align: center; cursor: pointer; z-index: 10; transition: all 0.2s ease; opacity: 0;" onmouseover="this.style.background=\'rgba(239, 68, 68, 0.2)\'" onmouseout="this.style.background=\'rgba(239, 68, 68, 0.1)\'">&times;</span>' +
+                '<div class="xe-comment-entry">' +
+                '<a class="xe-user-img">' +
+                (newItem.image ? '<img src="' + newItem.image + '" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'block\';" alt="' + newItem.title + '"><span style="display:none; background:' + bgColor + '">' + newItem.title.substr(0, 1) + '</span>' : '<span style="background:' + bgColor + '">' + newItem.title.substr(0, 1) + '</span>') +
+                '</a>' +
+                '<div class="xe-comment">' +
+                '<p class="title xe-user-name overflowClip_1">' + newItem.title + '</p>' +
+                '<p class="desc overflowClip_2">' + newItem.desc + '</p>' +
+                '</div></div></div></div>';
+
+            $row.prepend(cardHtml);
+        }
+
+        // 更新计数
+        updateRecentSitesCount();
+        var count = navData.list[0].nav ? navData.list[0].nav.length : 0;
+        $recentSection.find(".nav-count").text(count);
+    }
+
+    // 获取随机颜色
+    function getRandomColor(title) {
+        var colors = ['#084177', '#2b580c', '#1eb2a6', '#721b65', '#f8615a', '#a8d3da', '#a8e6cf', '#4f3961', '#f1935c'];
+        return colors[title.length % colors.length];
+    }
+
+    //历史记录 入栈（带点击次数追踪）
     function pushHistory(data, deleteData) {
         var history = localStorage.getItem(storageName)
         var deleteData = deleteData || ''
         history = JSON.parse(history)
         if (!history) {
             history = []
+            data.clickCount = 1
             history.push(data)
         } else {
-            for (var i = history.length - 1; i >= 0; i--) {
-                if (history[i].url == deleteData) {
-                    history.splice(i, 1)
-                    continue
+            // 查找是否已存在
+            var existingIndex = -1
+            for (var i = 0; i < history.length; i++) {
+                if (history[i].url === data.url || history[i].url === deleteData) {
+                    existingIndex = i
+                    break
                 }
-                history[i + 1] = history[i]
             }
-            history[0] = data
+
+            if (existingIndex >= 0) {
+                // 已存在，增加点击次数
+                var existingItem = history[existingIndex]
+                existingItem.clickCount = (existingItem.clickCount || 1) + 1
+                // 从原位置移除
+                history.splice(existingIndex, 1)
+                // 插入到最前面
+                history.unshift(existingItem)
+            } else {
+                // 新记录
+                data.clickCount = 1
+                history.unshift(data)
+            }
         }
         localStorage.setItem(storageName, JSON.stringify(history))
     }
@@ -1611,10 +1739,10 @@
         var history = localStorage.getItem(storageName)
         history = JSON.parse(history)
         var inList = false
+
         if (history) {
             for (var i = 0; i < history.length; i++) {
                 if (url == history[i].url) {
-                    //将位置放到首个
                     pushHistory(history[i], history[i].url)
                     inList = true
                     break;
@@ -1622,13 +1750,11 @@
             }
         }
         if (!inList) {
-            //不在历史列表中
             var title = $(this).find(".title").html()
             var desc = $(this).find(".desc").html()
             var image = 'https://favicon.im/' + new URL(url).hostname;
             if ($(this).find(".xe-user-img img").length > 0) {
-                //有logo
-                image = $($(this).find(".xe-user-img img")[0]).data('src')
+                image = $($(this).find(".xe-user-img img")[0]).data('src') || $($(this).find(".xe-user-img img")[0]).attr('src')
             }
             var data = {
                 title: title,
@@ -1638,13 +1764,58 @@
             }
             pushHistory(data)
         }
-
-        // 不刷新界面，只更新localStorage和数量显示
-        updateRecentSitesCount()
+        // 只更新localStorage，不刷新UI，下次进入时才显示
     })
 
+    // 删除单个历史记录
+    function deleteHistoryItem(url) {
+        var history = localStorage.getItem(storageName)
+        if (!history) return
+
+        history = JSON.parse(history)
+        history = history.filter(function(item) {
+            return item.url !== url
+        })
+
+        localStorage.setItem(storageName, JSON.stringify(history))
+
+        // 只移除最近使用区域内的卡片
+        var $card = $('#最近使用 .site-box[data-url="' + url + '"]').closest('.col-sm-3');
+        $card.fadeOut(200, function() {
+            $(this).remove();
+            // 更新计数
+            var count = history.length;
+            $("#最近使用 .nav-count").text(count);
+        });
+    }
+
+    // 清空本站所有缓存
+    function clearSiteCache() {
+        if (confirm('确定要清空本站所有缓存吗？\n包括：最近使用记录、图标缓存等')) {
+            // 清除localStorage中所有与本站相关的数据
+            var keysToRemove = [];
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                // 清除历史记录、图标缓存等
+                if (key && (key.indexOf('zk_') === 0 || key.indexOf('icon_') === 0 || key.indexOf('cache_') === 0)) {
+                    keysToRemove.push(key);
+                }
+            }
+            keysToRemove.forEach(function(key) {
+                localStorage.removeItem(key);
+            });
+
+            // 清除sessionStorage
+            sessionStorage.clear();
+
+            // 显示提示并刷新页面
+            alert('缓存已清空！页面将刷新。');
+            location.reload();
+        }
+    }
+
 </script>
-<script src="assets/js/announcement-system.js" defer></script>
+<script src="assets/js/site-config-loader.js" defer></script>
 <script src="assets/js/hero-functions.js" defer></script>
 <script src="assets/js/nav-active.js" defer></script>
 <script src="assets/js/bootstrap.min.js" defer></script>
@@ -1670,16 +1841,6 @@
 </div>
 
 <script>
-    // 右上角联系按钮事件
-    document.getElementById('contact-btn-top').addEventListener('click', function () {
-        document.getElementById('contactModal').style.display = 'flex';
-    });
-
-    // 页脚联系按钮事件 - 和右上角功能一样
-    document.getElementById('contact-btn-footer').addEventListener('click', function () {
-        document.getElementById('contactModal').style.display = 'flex';
-    });
-
     document.getElementById('closeModal').addEventListener('click', function () {
         document.getElementById('contactModal').style.display = 'none';
     });
@@ -1704,8 +1865,15 @@
 
     // 全局关闭公告函数
     function closeAnnouncement() {
-        if (window.announcementSystem) {
-            window.announcementSystem.closeAnnouncement();
+        var container = document.getElementById('announcementContainer');
+        var message = document.getElementById('announcementMessage');
+        if (message) {
+            message.style.animation = 'announcementSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+            setTimeout(function() {
+                if (container) {
+                    container.style.display = 'none';
+                }
+            }, 300);
         }
     }
 </script>

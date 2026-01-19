@@ -1983,22 +1983,26 @@ document.getElementById('back-to-top').addEventListener('click', function() {
 var clearCacheBtn = document.getElementById('clear-cache-btn');
 
   // 为按钮添加点击事件监听器
-  clearCacheBtn.addEventListener('click', function() {
-    // 调用浏览器的清除缓存功能
-    window.localStorage.clear();
-    window.sessionStorage.clear();
-    alert('浏览缓存已清除,刷新即可');
-  });
+  if (clearCacheBtn) {
+    clearCacheBtn.addEventListener('click', function() {
+      // 调用浏览器的清除缓存功能
+      window.localStorage.clear();
+      window.sessionStorage.clear();
+      alert('浏览缓存已清除,刷新即可');
+    });
+  }
  
 // 运行时间
 // 计算网站运行时间
 function calculateUptime() {
+  var el = document.getElementById('uptime');
+  if (!el) return;
   var launchDate = new Date('2024-04-01'); // 网站上线日期
   var currentDate = new Date();
   var millisecondsPerDay = 24 * 60 * 60 * 1000;
   var uptime = (currentDate - launchDate) / millisecondsPerDay;
   var days = Math.floor(uptime);
-  document.getElementById('uptime').textContent = days;
+  el.textContent = days;
 }
 
 // 调用函数计算运行时间
